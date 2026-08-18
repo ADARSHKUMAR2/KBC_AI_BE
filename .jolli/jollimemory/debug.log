@@ -271,3 +271,157 @@
 [2026-08-18T12:46:05.367Z] INFO  [PrePushHook] [trace=31fd1c635ee70e1ccc13ba14f8d94cbd] pre-push: recorded 1 commit(s) across 1 pushed ref(s)
 [2026-08-18T12:46:05.371Z] INFO  [PrePushHook] [trace=31fd1c635ee70e1ccc13ba14f8d94cbd] Recorded 1 commit(s) for later sync — not signed in to Jolli
 [2026-08-18T12:46:05.384Z] INFO  [StorageFactory] [trace=31fd1c635ee70e1ccc13ba14f8d94cbd] StorageFactory.create: route=cutover, projectPath=/Users/adarsh/KBC_AI_BE
+[2026-08-18T13:01:03.499Z] INFO  [PrepareMsgHook] === Prepare-commit-msg hook started (source: message) ===
+[2026-08-18T13:01:03.515Z] INFO  [PrepareMsgHook] === Prepare-commit-msg hook finished ===
+[2026-08-18T13:01:03.620Z] INFO  [PostCommitHook] [trace=cf9f58e9287802817884e705e13ef7c1] Detected operation: commit
+[2026-08-18T13:01:03.630Z] INFO  [PostCommitHook] [trace=cf9f58e9287802817884e705e13ef7c1] Enqueued: type=commit hash=c63d6069
+[2026-08-18T13:01:03.630Z] INFO  [QueueWorker] [trace=cf9f58e9287802817884e705e13ef7c1] Launching background worker
+[2026-08-18T13:01:03.631Z] INFO  [QueueWorker] [trace=cf9f58e9287802817884e705e13ef7c1] Background worker spawned (PID: 84858)
+[2026-08-18T13:01:03.632Z] INFO  [EnsureGlobalDaemon] [trace=cf9f58e9287802817884e705e13ef7c1] spawned global daemon ensure helper (pid 84859)
+[2026-08-18T13:01:03.794Z] INFO  [QueueWorker] [trace=cf9f58e9287802817884e705e13ef7c1] === Queue worker started === node=24.13.0 kind=vscode-plugin source=vscode pkgVer=0.99.13 cliVer=0.99.13 dist=/Users/adarsh/.vscode/extensions/jolli.jollimemory-vscode-0.99.13/dist
+[2026-08-18T13:01:03.803Z] INFO  [StorageFactory] [trace=cf9f58e9287802817884e705e13ef7c1] StorageFactory.create: route=cutover, projectPath=/Users/adarsh/KBC_AI_BE
+[2026-08-18T13:01:03.856Z] INFO  [QueueWorker] [trace=cf9f58e9287802817884e705e13ef7c1] Processing queue entry: type=commit hash=c63d6069
+[2026-08-18T13:01:03.868Z] INFO  [GitOps] [trace=cf9f58e9287802817884e705e13ef7c1] Commit c63d6069: testing auth
+[2026-08-18T13:01:03.868Z] INFO  [QueueWorker] [trace=cf9f58e9287802817884e705e13ef7c1] Commit: c63d6069 - testing auth (10ms)
+[2026-08-18T13:01:03.945Z] INFO  [QueueWorker] [trace=cf9f58e9287802817884e705e13ef7c1] Discovered 3 Copilot Chat session(s)
+[2026-08-18T13:01:03.946Z] INFO  [QueueWorker] [trace=cf9f58e9287802817884e705e13ef7c1] Discovered 2 Cline (VS Code) session(s)
+[2026-08-18T13:01:04.068Z] INFO  [QueueWorker] [trace=cf9f58e9287802817884e705e13ef7c1] Transcript source: session=1787050474458, lines=64→66, entries=2
+[2026-08-18T13:01:04.084Z] INFO  [QueueWorker] [trace=cf9f58e9287802817884e705e13ef7c1] Git diff: 10 files changed, +95 -9 (15ms)
+[2026-08-18T13:01:04.116Z] INFO  [QueueWorker] [trace=cf9f58e9287802817884e705e13ef7c1] Prompt blocks: plans=0 notes=0 references=0 (+0 track-only archived, not prompted) (AI soft-excluded 0)
+[2026-08-18T13:01:04.116Z] INFO  [Summarizer] [trace=cf9f58e9287802817884e705e13ef7c1] Generating summary for commit c63d6069
+[2026-08-18T13:01:04.116Z] INFO  [Summarizer] [trace=cf9f58e9287802817884e705e13ef7c1] Context: transcript=2, files=10, lines=95+9
+[2026-08-18T13:01:04.116Z] WARN  [QueueWorker] [trace=cf9f58e9287802817884e705e13ef7c1] First API attempt failed: No LLM provider available. Set an Anthropic API key (ANTHROPIC_API_KEY) or configure a Jolli Space API key (jolliApiKey).. Retrying in 2000ms...
+[2026-08-18T13:01:06.118Z] INFO  [Summarizer] [trace=cf9f58e9287802817884e705e13ef7c1] Generating summary for commit c63d6069
+[2026-08-18T13:01:06.118Z] INFO  [Summarizer] [trace=cf9f58e9287802817884e705e13ef7c1] Context: transcript=2, files=10, lines=95+9
+[2026-08-18T13:01:06.118Z] ERROR [QueueWorker] [trace=cf9f58e9287802817884e705e13ef7c1] API call failed after retry: No LLM provider available. Set an Anthropic API key (ANTHROPIC_API_KEY) or configure a Jolli Space API key (jolliApiKey).
+[2026-08-18T13:01:06.118Z] WARN  [QueueWorker] [trace=cf9f58e9287802817884e705e13ef7c1] Saving summary with empty topics + llm-failed marker for commit c63d6069
+[2026-08-18T13:01:06.118Z] INFO  [QueueWorker] [trace=cf9f58e9287802817884e705e13ef7c1] API summary generated (2.0s)
+[2026-08-18T13:01:06.118Z] INFO  [QueueWorker] [trace=cf9f58e9287802817884e705e13ef7c1] Plan registry scan: found 0 uncommitted slug(s) on main: []
+[2026-08-18T13:01:06.118Z] INFO  [QueueWorker] [trace=cf9f58e9287802817884e705e13ef7c1] Plan association: detected 0 slug(s) from transcripts: []
+[2026-08-18T13:01:06.119Z] INFO  [QueueWorker] [trace=cf9f58e9287802817884e705e13ef7c1] Note registry scan: found 0 uncommitted note(s) on main: []
+[2026-08-18T13:01:06.119Z] INFO  [QueueWorker] [trace=cf9f58e9287802817884e705e13ef7c1] Note association: detected 0 note(s): []
+[2026-08-18T13:01:06.119Z] INFO  [QueueWorker] [trace=cf9f58e9287802817884e705e13ef7c1] Reference association: detected 0 ref(s) for branch main
+[2026-08-18T13:01:06.120Z] INFO  [QueueWorker] [trace=cf9f58e9287802817884e705e13ef7c1] Summary built for c63d6069: recap=no, topics=0, plans=absent, notes=absent, references=absent
+[2026-08-18T13:01:06.175Z] INFO  [MetadataManager] [trace=cf9f58e9287802817884e705e13ef7c1] Manifest updated: main/testing-auth-c63d6069.md (commit)
+[2026-08-18T13:01:06.175Z] INFO  [FolderStorage] [trace=cf9f58e9287802817884e705e13ef7c1] Markdown generated: main/testing-auth-c63d6069.md
+[2026-08-18T13:01:06.176Z] INFO  [FolderStorage] [trace=cf9f58e9287802817884e705e13ef7c1] Wrote 4 files, deleted 0 (Add summary for c63d6069: testing auth)
+[2026-08-18T13:01:06.176Z] INFO  [SummaryStore] [trace=cf9f58e9287802817884e705e13ef7c1] Summary stored successfully for commit c63d6069
+[2026-08-18T13:01:06.181Z] INFO  [QueueWorker] [trace=cf9f58e9287802817884e705e13ef7c1] Summary stored successfully for commit c63d6069 (61ms, 0 plans, 0 notes, 0 references)
+[2026-08-18T13:01:06.181Z] INFO  [QueueWorker] [trace=cf9f58e9287802817884e705e13ef7c1] === Pipeline completed in 2.3s ===
+[2026-08-18T13:01:06.181Z] INFO  [QueueWorker] [trace=cf9f58e9287802817884e705e13ef7c1] === Summary content (0 topics) ===
+[2026-08-18T13:01:06.183Z] INFO  [QueueWorker] [trace=cf9f58e9287802817884e705e13ef7c1] Processed 1 queue entries
+[2026-08-18T13:01:06.183Z] INFO  [PushExecutor] [trace=cf9f58e9287802817884e705e13ef7c1] Post-queue push trigger: scheduling drain for 1 newly generated summar(ies)
+[2026-08-18T13:01:06.185Z] INFO  [PushExecutor] [trace=cf9f58e9287802817884e705e13ef7c1] processPushPending(post-queue): 2 pending entr(ies) (filtered to 1 hash(es))
+[2026-08-18T13:01:06.189Z] INFO  [PushExecutor] [trace=cf9f58e9287802817884e705e13ef7c1] processPushPending(post-queue): not signed in — keeping 2 entries for later
+[2026-08-18T13:01:06.212Z] INFO  [GitOps] [trace=cf9f58e9287802817884e705e13ef7c1] Commit c63d6069: testing auth
+[2026-08-18T13:01:06.232Z] INFO  [StorageFactory] [trace=cf9f58e9287802817884e705e13ef7c1] StorageFactory.create: route=cutover, projectPath=/Users/adarsh/KBC_AI_BE
+[2026-08-18T13:01:06.267Z] INFO  [QueueWorker] [trace=cf9f58e9287802817884e705e13ef7c1] === Queue worker finished ===
+[2026-08-18T13:01:06.267Z] INFO  [SessionStartHook] [trace=cf9f58e9287802817884e705e13ef7c1] Briefing cache not warmed — nothing to brief on this branch
+[2026-08-18T13:01:06.421Z] INFO  [PlanService] detectPlans found 0 plans (0 in registry)
+[2026-08-18T13:01:06.422Z] INFO  [NoteService] detectNotes found 0 notes (0 in registry)
+[2026-08-18T13:01:06.422Z] INFO  [SkillProjection] projectActiveSkills: 0 active (0 in registry)
+[2026-08-18T13:01:06.422Z] INFO  [references] detectReferences(*) found 0 (0 in registry)
+[2026-08-18T13:17:11.135Z] INFO  [activate] Activating JolliMemory extension {"workspaceRoot":"/Users/adarsh/KBC_AI_BE","extensionPath":"/Users/adarsh/.vscode/extensions/jolli.jollimemory-vscode-0.99.13"}
+[2026-08-18T13:17:11.334Z] INFO  [initialLoad] Loading all panels
+[2026-08-18T13:17:11.797Z] INFO  [PlanService] detectPlans found 0 plans (0 in registry)
+[2026-08-18T13:17:11.797Z] INFO  [NoteService] detectNotes found 0 notes (0 in registry)
+[2026-08-18T13:17:11.798Z] INFO  [references] detectReferences(*) found 0 (0 in registry)
+[2026-08-18T13:17:22.806Z] INFO  [activate] Activating JolliMemory extension {"workspaceRoot":"/Users/adarsh/KBC_AI_BE","extensionPath":"/Users/adarsh/.vscode/extensions/jolli.jollimemory-vscode-0.99.13"}
+[2026-08-18T13:17:23.030Z] INFO  [initialLoad] Loading all panels
+[2026-08-18T13:17:23.946Z] INFO  [PlanService] detectPlans found 0 plans (0 in registry)
+[2026-08-18T13:17:23.946Z] INFO  [NoteService] detectNotes found 0 notes (0 in registry)
+[2026-08-18T13:17:23.946Z] INFO  [references] detectReferences(*) found 0 (0 in registry)
+[2026-08-18T13:17:23.946Z] INFO  [SkillProjection] projectActiveSkills: 0 active (0 in registry)
+[2026-08-18T13:17:24.397Z] INFO  [StorageFactory] StorageFactory.create: route=cutover, projectPath=/Users/adarsh/KBC_AI_BE
+[2026-08-18T13:17:25.299Z] INFO  [Installer] Checking Jolli Memory status
+[2026-08-18T13:17:25.299Z] INFO  [Installer] Checking Jolli Memory status
+[2026-08-18T13:17:34.854Z] INFO  [StorageFactory] StorageFactory.create: route=cutover, projectPath=/Users/adarsh/KBC_AI_BE
+[2026-08-18T13:17:37.270Z] INFO  [activate] Schema v5 migration already complete — skipping (no UI toggle)
+[2026-08-18T13:17:39.146Z] INFO  [MigrationEngine] 0.99.2 head-regen already completed at 2026-08-18T10:35:27.356Z — skipping phase 1
+[2026-08-18T13:17:39.147Z] INFO  [MigrationEngine] Stale-child sweep: deleted=0 failed=0
+[2026-08-18T13:17:39.148Z] INFO  [activate] KB stale-child reconcile: swept=0 completedAt=2026-08-18T10:35:27.356Z
+[2026-08-18T13:17:43.025Z] INFO  [PrePushWorker] [trace=0d72d7e5131fd1f299f32fdc3aa5f991] PrePushWorker(vscode-activation): spawned compensation drain starting
+[2026-08-18T13:17:43.038Z] INFO  [PushExecutor] [trace=0d72d7e5131fd1f299f32fdc3aa5f991] processPushPending(activation): 2 pending entr(ies)
+[2026-08-18T13:17:43.458Z] INFO  [PushExecutor] [trace=0d72d7e5131fd1f299f32fdc3aa5f991] processPushPending(activation): not signed in — keeping 2 entries for later
+[2026-08-18T13:17:43.458Z] INFO  [PrePushWorker] [trace=0d72d7e5131fd1f299f32fdc3aa5f991] PrePushWorker(vscode-activation): drain done — attempted=0 pushed=0 failed=0 (not signed in)
+[2026-08-18T13:17:46.031Z] INFO  [Installer] Status: enabled=true, claude=true, git=true, geminiHook=true, worktreeHooks=true, sessions=5, summaries=3, codex=false/undefined, gemini=true/true, enabledWorktrees=1, opencode=false/undefined, cursor=true/true, copilot=false/true, copilotChat=true, cline=true/true
+[2026-08-18T13:17:46.053Z] INFO  [initialLoad] All panels loaded — updating status bar
+[2026-08-18T13:17:46.054Z] INFO  [Installer] Checking Jolli Memory status
+[2026-08-18T13:17:46.092Z] INFO  [Installer] Status: enabled=true, claude=true, git=true, geminiHook=true, worktreeHooks=true, sessions=5, summaries=3, codex=false/undefined, gemini=true/true, enabledWorktrees=1, opencode=false/undefined, cursor=true/true, copilot=false/true, copilotChat=true, cline=true/true
+[2026-08-18T13:17:46.100Z] INFO  [Installer] Checking Jolli Memory status
+[2026-08-18T13:17:48.092Z] INFO  [Installer] Status: enabled=true, claude=true, git=true, geminiHook=true, worktreeHooks=true, sessions=5, summaries=3, codex=false/undefined, gemini=true/true, enabledWorktrees=1, opencode=false/undefined, cursor=true/true, copilot=false/true, copilotChat=true, cline=true/true
+[2026-08-18T13:17:48.118Z] INFO  [Installer] Checking Jolli Memory status
+[2026-08-18T13:17:48.475Z] INFO  [Installer] Status: enabled=true, claude=true, git=true, geminiHook=true, worktreeHooks=true, sessions=5, summaries=3, codex=false/undefined, gemini=true/true, enabledWorktrees=1, opencode=false/undefined, cursor=true/true, copilot=false/true, copilotChat=true, cline=true/true
+[2026-08-18T13:17:48.658Z] INFO  [StorageFactory] StorageFactory.create: route=cutover, projectPath=/Users/adarsh/KBC_AI_BE
+[2026-08-18T13:17:49.725Z] INFO  [StorageFactory] StorageFactory.create: route=cutover, projectPath=/Users/adarsh/KBC_AI_BE
+[2026-08-18T13:17:50.177Z] INFO  [Installer] Status: enabled=true, claude=true, git=true, geminiHook=true, worktreeHooks=true, sessions=5, summaries=3, codex=false/undefined, gemini=true/true, enabledWorktrees=1, opencode=false/undefined, cursor=true/true, copilot=false/true, copilotChat=true, cline=true/true
+[2026-08-18T13:18:29.038Z] INFO  [deactivate] Jolli Memory extension deactivating
+[2026-08-18T13:18:33.528Z] INFO  [activate] Activating JolliMemory extension {"workspaceRoot":"/Users/adarsh/KBC_AI_BE","extensionPath":"/Users/adarsh/.vscode/extensions/jolli.jollimemory-vscode-0.99.13"}
+[2026-08-18T13:18:33.621Z] INFO  [initialLoad] Loading all panels
+[2026-08-18T13:18:34.695Z] INFO  [PlanService] detectPlans found 0 plans (0 in registry)
+[2026-08-18T13:18:34.695Z] INFO  [NoteService] detectNotes found 0 notes (0 in registry)
+[2026-08-18T13:18:34.695Z] INFO  [references] detectReferences(*) found 0 (0 in registry)
+[2026-08-18T13:18:34.695Z] INFO  [SkillProjection] projectActiveSkills: 0 active (0 in registry)
+[2026-08-18T13:18:35.135Z] INFO  [StorageFactory] StorageFactory.create: route=cutover, projectPath=/Users/adarsh/KBC_AI_BE
+[2026-08-18T13:18:35.447Z] INFO  [Installer] Checking Jolli Memory status
+[2026-08-18T13:18:35.447Z] INFO  [Installer] Checking Jolli Memory status
+[2026-08-18T13:18:40.583Z] INFO  [StorageFactory] StorageFactory.create: route=cutover, projectPath=/Users/adarsh/KBC_AI_BE
+[2026-08-18T13:18:41.447Z] INFO  [activate] Schema v5 migration already complete — skipping (no UI toggle)
+[2026-08-18T13:18:43.364Z] INFO  [MigrationEngine] 0.99.2 head-regen already completed at 2026-08-18T10:35:27.356Z — skipping phase 1
+[2026-08-18T13:18:43.365Z] INFO  [MigrationEngine] Stale-child sweep: deleted=0 failed=0
+[2026-08-18T13:18:43.366Z] INFO  [activate] KB stale-child reconcile: swept=0 completedAt=2026-08-18T10:35:27.356Z
+[2026-08-18T13:18:44.205Z] INFO  [PrePushWorker] [trace=1c05ee32f67915e2435ea70b02b4a278] PrePushWorker(vscode-activation): spawned compensation drain starting
+[2026-08-18T13:18:44.208Z] INFO  [PushExecutor] [trace=1c05ee32f67915e2435ea70b02b4a278] processPushPending(activation): 2 pending entr(ies)
+[2026-08-18T13:18:44.352Z] INFO  [PushExecutor] [trace=1c05ee32f67915e2435ea70b02b4a278] processPushPending(activation): not signed in — keeping 2 entries for later
+[2026-08-18T13:18:44.352Z] INFO  [PrePushWorker] [trace=1c05ee32f67915e2435ea70b02b4a278] PrePushWorker(vscode-activation): drain done — attempted=0 pushed=0 failed=0 (not signed in)
+[2026-08-18T13:18:47.321Z] INFO  [Installer] Status: enabled=true, claude=true, git=true, geminiHook=true, worktreeHooks=true, sessions=5, summaries=3, codex=false/undefined, gemini=true/true, enabledWorktrees=1, opencode=false/undefined, cursor=true/true, copilot=false/true, copilotChat=true, cline=true/true
+[2026-08-18T13:18:47.321Z] INFO  [Installer] Status: enabled=true, claude=true, git=true, geminiHook=true, worktreeHooks=true, sessions=5, summaries=3, codex=false/undefined, gemini=true/true, enabledWorktrees=1, opencode=false/undefined, cursor=true/true, copilot=false/true, copilotChat=true, cline=true/true
+[2026-08-18T13:18:47.411Z] INFO  [Installer] Checking Jolli Memory status
+[2026-08-18T13:18:47.413Z] INFO  [initialLoad] All panels loaded — updating status bar
+[2026-08-18T13:18:47.414Z] INFO  [Installer] Checking Jolli Memory status
+[2026-08-18T13:18:48.622Z] INFO  [Installer] Status: enabled=true, claude=true, git=true, geminiHook=true, worktreeHooks=true, sessions=5, summaries=3, codex=false/undefined, gemini=true/true, enabledWorktrees=1, opencode=false/undefined, cursor=true/true, copilot=false/true, copilotChat=true, cline=true/true
+[2026-08-18T13:18:48.639Z] INFO  [Installer] Checking Jolli Memory status
+[2026-08-18T13:18:49.302Z] INFO  [Installer] Status: enabled=true, claude=true, git=true, geminiHook=true, worktreeHooks=true, sessions=5, summaries=3, codex=false/undefined, gemini=true/true, enabledWorktrees=1, opencode=false/undefined, cursor=true/true, copilot=false/true, copilotChat=true, cline=true/true
+[2026-08-18T13:18:49.432Z] INFO  [StorageFactory] StorageFactory.create: route=cutover, projectPath=/Users/adarsh/KBC_AI_BE
+[2026-08-18T13:18:50.126Z] INFO  [StorageFactory] StorageFactory.create: route=cutover, projectPath=/Users/adarsh/KBC_AI_BE
+[2026-08-18T13:18:50.542Z] INFO  [Installer] Status: enabled=true, claude=true, git=true, geminiHook=true, worktreeHooks=true, sessions=5, summaries=3, codex=false/undefined, gemini=true/true, enabledWorktrees=1, opencode=false/undefined, cursor=true/true, copilot=false/true, copilotChat=true, cline=true/true
+[2026-08-18T17:39:16.683Z] INFO  [activate] Activating JolliMemory extension {"workspaceRoot":"/Users/adarsh/KBC_AI_BE","extensionPath":"/Users/adarsh/.vscode/extensions/jolli.jollimemory-vscode-0.99.13"}
+[2026-08-18T17:39:16.768Z] INFO  [initialLoad] Loading all panels
+[2026-08-18T17:39:17.244Z] INFO  [PlanService] detectPlans found 0 plans (0 in registry)
+[2026-08-18T17:39:17.244Z] INFO  [NoteService] detectNotes found 0 notes (0 in registry)
+[2026-08-18T17:39:17.244Z] INFO  [references] detectReferences(*) found 0 (0 in registry)
+[2026-08-18T17:39:17.244Z] INFO  [SkillProjection] projectActiveSkills: 0 active (0 in registry)
+[2026-08-18T17:39:18.164Z] INFO  [StorageFactory] StorageFactory.create: route=cutover, projectPath=/Users/adarsh/KBC_AI_BE
+[2026-08-18T17:39:19.208Z] INFO  [Installer] Checking Jolli Memory status
+[2026-08-18T17:39:19.209Z] INFO  [Installer] Checking Jolli Memory status
+[2026-08-18T17:39:21.624Z] INFO  [StorageFactory] StorageFactory.create: route=cutover, projectPath=/Users/adarsh/KBC_AI_BE
+[2026-08-18T17:39:21.799Z] INFO  [activate] Schema v5 migration already complete — skipping (no UI toggle)
+[2026-08-18T17:39:22.341Z] INFO  [MigrationEngine] 0.99.2 head-regen already completed at 2026-08-18T10:35:27.356Z — skipping phase 1
+[2026-08-18T17:39:22.342Z] INFO  [MigrationEngine] Stale-child sweep: deleted=0 failed=0
+[2026-08-18T17:39:22.342Z] INFO  [activate] KB stale-child reconcile: swept=0 completedAt=2026-08-18T10:35:27.356Z
+[2026-08-18T17:39:23.072Z] INFO  [PrePushWorker] [trace=84c0651e6415c41c4fccf38ed5a4f081] PrePushWorker(vscode-activation): spawned compensation drain starting
+[2026-08-18T17:39:23.079Z] INFO  [PushExecutor] [trace=84c0651e6415c41c4fccf38ed5a4f081] processPushPending(activation): 2 pending entr(ies)
+[2026-08-18T17:39:23.193Z] INFO  [PushExecutor] [trace=84c0651e6415c41c4fccf38ed5a4f081] processPushPending(activation): not signed in — keeping 2 entries for later
+[2026-08-18T17:39:23.194Z] INFO  [PrePushWorker] [trace=84c0651e6415c41c4fccf38ed5a4f081] PrePushWorker(vscode-activation): drain done — attempted=0 pushed=0 failed=0 (not signed in)
+[2026-08-18T17:39:24.286Z] INFO  [Installer] Status: enabled=true, claude=true, git=true, geminiHook=true, worktreeHooks=true, sessions=6, summaries=3, codex=false/undefined, gemini=true/true, enabledWorktrees=1, opencode=false/undefined, cursor=true/true, copilot=false/true, copilotChat=true, cline=true/true
+[2026-08-18T17:39:24.290Z] INFO  [Installer] Checking Jolli Memory status
+[2026-08-18T17:39:24.341Z] INFO  [Installer] Status: enabled=true, claude=true, git=true, geminiHook=true, worktreeHooks=true, sessions=6, summaries=3, codex=false/undefined, gemini=true/true, enabledWorktrees=1, opencode=false/undefined, cursor=true/true, copilot=false/true, copilotChat=true, cline=true/true
+[2026-08-18T17:39:24.343Z] INFO  [initialLoad] All panels loaded — updating status bar
+[2026-08-18T17:39:24.347Z] INFO  [Installer] Checking Jolli Memory status
+[2026-08-18T17:39:24.648Z] INFO  [Installer] Status: enabled=true, claude=true, git=true, geminiHook=true, worktreeHooks=true, sessions=6, summaries=3, codex=false/undefined, gemini=true/true, enabledWorktrees=1, opencode=false/undefined, cursor=true/true, copilot=false/true, copilotChat=true, cline=true/true
+[2026-08-18T17:39:24.670Z] INFO  [Installer] Checking Jolli Memory status
+[2026-08-18T17:39:24.830Z] INFO  [Installer] Status: enabled=true, claude=true, git=true, geminiHook=true, worktreeHooks=true, sessions=6, summaries=3, codex=false/undefined, gemini=true/true, enabledWorktrees=1, opencode=false/undefined, cursor=true/true, copilot=false/true, copilotChat=true, cline=true/true
+[2026-08-18T17:39:24.856Z] INFO  [StorageFactory] StorageFactory.create: route=cutover, projectPath=/Users/adarsh/KBC_AI_BE
+[2026-08-18T17:39:25.220Z] INFO  [StorageFactory] StorageFactory.create: route=cutover, projectPath=/Users/adarsh/KBC_AI_BE
+[2026-08-18T17:39:25.721Z] INFO  [Installer] Status: enabled=true, claude=true, git=true, geminiHook=true, worktreeHooks=true, sessions=6, summaries=3, codex=false/undefined, gemini=true/true, enabledWorktrees=1, opencode=false/undefined, cursor=true/true, copilot=false/true, copilotChat=true, cline=true/true
+[2026-08-18T19:37:14.441Z] INFO  [PrePushHook] [trace=3bebffce3220f7efcc5384ef08423ede] pre-push hook: remote=origin budget=3000ms
+[2026-08-18T19:37:14.457Z] INFO  [PushPendingStore] [trace=3bebffce3220f7efcc5384ef08423ede] Enqueued 1 new push-pending entries (branch=main)
+[2026-08-18T19:37:14.458Z] INFO  [PrePushHook] [trace=3bebffce3220f7efcc5384ef08423ede] pre-push: recorded 1 commit(s) across 1 pushed ref(s)
+[2026-08-18T19:37:14.465Z] INFO  [PrePushHook] [trace=3bebffce3220f7efcc5384ef08423ede] Recorded 1 commit(s) for later sync — not signed in to Jolli
+[2026-08-18T19:37:14.494Z] INFO  [StorageFactory] [trace=3bebffce3220f7efcc5384ef08423ede] StorageFactory.create: route=cutover, projectPath=/Users/adarsh/KBC_AI_BE
+[2026-08-18T19:37:25.559Z] INFO  [Installer] Checking Jolli Memory status
+[2026-08-18T19:37:25.560Z] INFO  [PlanService] detectPlans found 0 plans (0 in registry)
+[2026-08-18T19:37:25.560Z] INFO  [NoteService] detectNotes found 0 notes (0 in registry)
+[2026-08-18T19:37:25.560Z] INFO  [references] detectReferences(*) found 0 (0 in registry)
+[2026-08-18T19:37:25.560Z] INFO  [SkillProjection] projectActiveSkills: 0 active (0 in registry)
+[2026-08-18T19:37:25.862Z] INFO  [Installer] Status: enabled=true, claude=true, git=true, geminiHook=true, worktreeHooks=true, sessions=7, summaries=3, codex=false/undefined, gemini=true/true, enabledWorktrees=1, opencode=false/undefined, cursor=true/true, copilot=false/true, copilotChat=true, cline=true/true
