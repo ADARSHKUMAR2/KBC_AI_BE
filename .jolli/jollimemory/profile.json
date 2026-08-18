@@ -1,4 +1,12 @@
 {
 	"userDisabled": false,
-	"manuallyDisabled": false
+	"manuallyDisabled": true,
+	"cutoverAttemptedAtMs": 1787041630662,
+	"cutoverFence": {
+		"reason": "cutover to sqlite",
+		"at": "2026-08-18T08:27:10.665Z",
+		"tips": {
+			"/Users/adarsh/KBC_AI_BE": "0730a40c09b28ea593e36ef46b837b5e99117dab"
+		}
+	}
 }
