@@ -88,3 +88,7 @@ async def get_profile(authorization: str = Header(...)):
         games_won=user.games_won,
         total_score=user.total_score
     )
+
+@router.get("/test")
+async def test_profile():
+    return {"status": "Test"}

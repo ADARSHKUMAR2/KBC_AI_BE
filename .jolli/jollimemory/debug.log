@@ -213,3 +213,61 @@
 [2026-08-18T10:36:03.853Z] INFO  [StorageFactory] StorageFactory.create: route=cutover, projectPath=/Users/adarsh/KBC_AI_BE
 [2026-08-18T10:36:04.023Z] INFO  [StorageFactory] StorageFactory.create: route=cutover, projectPath=/Users/adarsh/KBC_AI_BE
 [2026-08-18T10:36:04.077Z] INFO  [Installer] Status: enabled=true, claude=true, git=true, geminiHook=true, worktreeHooks=true, sessions=4, summaries=1, codex=false/undefined, gemini=true/true, enabledWorktrees=1, opencode=false/undefined, cursor=true/true, copilot=false/true, copilotChat=true, cline=true/true
+[2026-08-18T12:45:58.144Z] INFO  [PrepareMsgHook] === Prepare-commit-msg hook started (source: message) ===
+[2026-08-18T12:45:58.183Z] INFO  [PrepareMsgHook] === Prepare-commit-msg hook finished ===
+[2026-08-18T12:45:58.304Z] INFO  [PostCommitHook] [trace=f9aa82edbff9f38e1def133493f5d6b8] Detected operation: commit
+[2026-08-18T12:45:58.316Z] INFO  [PostCommitHook] [trace=f9aa82edbff9f38e1def133493f5d6b8] Enqueued: type=commit hash=131bfa81
+[2026-08-18T12:45:58.316Z] INFO  [QueueWorker] [trace=f9aa82edbff9f38e1def133493f5d6b8] Launching background worker
+[2026-08-18T12:45:58.317Z] INFO  [QueueWorker] [trace=f9aa82edbff9f38e1def133493f5d6b8] Background worker spawned (PID: 77931)
+[2026-08-18T12:45:58.318Z] INFO  [EnsureGlobalDaemon] [trace=f9aa82edbff9f38e1def133493f5d6b8] spawned global daemon ensure helper (pid 77932)
+[2026-08-18T12:45:58.635Z] INFO  [QueueWorker] [trace=f9aa82edbff9f38e1def133493f5d6b8] === Queue worker started === node=24.13.0 kind=vscode-plugin source=vscode pkgVer=0.99.13 cliVer=0.99.13 dist=/Users/adarsh/.vscode/extensions/jolli.jollimemory-vscode-0.99.13/dist
+[2026-08-18T12:45:58.654Z] INFO  [StorageFactory] [trace=f9aa82edbff9f38e1def133493f5d6b8] StorageFactory.create: route=cutover, projectPath=/Users/adarsh/KBC_AI_BE
+[2026-08-18T12:45:58.742Z] INFO  [QueueWorker] [trace=f9aa82edbff9f38e1def133493f5d6b8] Processing queue entry: type=commit hash=131bfa81
+[2026-08-18T12:45:58.769Z] INFO  [GitOps] [trace=f9aa82edbff9f38e1def133493f5d6b8] Commit 131bfa81: auth & gateway setup
+[2026-08-18T12:45:58.769Z] INFO  [QueueWorker] [trace=f9aa82edbff9f38e1def133493f5d6b8] Commit: 131bfa81 - auth & gateway setup (13ms)
+[2026-08-18T12:45:58.900Z] INFO  [QueueWorker] [trace=f9aa82edbff9f38e1def133493f5d6b8] Discovered 3 Copilot Chat session(s)
+[2026-08-18T12:45:58.907Z] INFO  [QueueWorker] [trace=f9aa82edbff9f38e1def133493f5d6b8] Discovered 2 Cline (VS Code) session(s)
+[2026-08-18T12:45:58.969Z] INFO  [QueueWorker] [trace=f9aa82edbff9f38e1def133493f5d6b8] Transcript source: session=1787040958878, lines=10→57, entries=43
+[2026-08-18T12:45:58.976Z] INFO  [QueueWorker] [trace=f9aa82edbff9f38e1def133493f5d6b8] Transcript source: session=1787050474458, lines=0→64, entries=37
+[2026-08-18T12:45:59.020Z] WARN  [GitOps] [trace=f9aa82edbff9f38e1def133493f5d6b8] Diff exceeds 150000-char budget (203881 chars) — prepending --stat file list and truncating body
+[2026-08-18T12:45:59.041Z] INFO  [QueueWorker] [trace=f9aa82edbff9f38e1def133493f5d6b8] Git diff: 48 files changed, +2007 -3 (64ms)
+[2026-08-18T12:45:59.145Z] WARN  [GitOps] [trace=f9aa82edbff9f38e1def133493f5d6b8] Diff exceeds 60000-char budget (203881 chars) — prepending --stat file list and truncating body
+[2026-08-18T12:45:59.152Z] INFO  [QueueWorker] [trace=f9aa82edbff9f38e1def133493f5d6b8] Prompt blocks: plans=0 notes=0 references=0 (+0 track-only archived, not prompted) (AI soft-excluded 0)
+[2026-08-18T12:45:59.153Z] INFO  [Summarizer] [trace=f9aa82edbff9f38e1def133493f5d6b8] Generating summary for commit 131bfa81
+[2026-08-18T12:45:59.153Z] INFO  [Summarizer] [trace=f9aa82edbff9f38e1def133493f5d6b8] Context: transcript=80, files=48, lines=2007+3
+[2026-08-18T12:45:59.154Z] WARN  [QueueWorker] [trace=f9aa82edbff9f38e1def133493f5d6b8] First API attempt failed: No LLM provider available. Set an Anthropic API key (ANTHROPIC_API_KEY) or configure a Jolli Space API key (jolliApiKey).. Retrying in 2000ms...
+[2026-08-18T12:46:01.155Z] INFO  [Summarizer] [trace=f9aa82edbff9f38e1def133493f5d6b8] Generating summary for commit 131bfa81
+[2026-08-18T12:46:01.155Z] INFO  [Summarizer] [trace=f9aa82edbff9f38e1def133493f5d6b8] Context: transcript=80, files=48, lines=2007+3
+[2026-08-18T12:46:01.156Z] ERROR [QueueWorker] [trace=f9aa82edbff9f38e1def133493f5d6b8] API call failed after retry: No LLM provider available. Set an Anthropic API key (ANTHROPIC_API_KEY) or configure a Jolli Space API key (jolliApiKey).
+[2026-08-18T12:46:01.156Z] WARN  [QueueWorker] [trace=f9aa82edbff9f38e1def133493f5d6b8] Saving summary with empty topics + llm-failed marker for commit 131bfa81
+[2026-08-18T12:46:01.156Z] INFO  [QueueWorker] [trace=f9aa82edbff9f38e1def133493f5d6b8] API summary generated (2.0s)
+[2026-08-18T12:46:01.156Z] INFO  [QueueWorker] [trace=f9aa82edbff9f38e1def133493f5d6b8] Plan registry scan: found 0 uncommitted slug(s) on main: []
+[2026-08-18T12:46:01.157Z] INFO  [QueueWorker] [trace=f9aa82edbff9f38e1def133493f5d6b8] Plan association: detected 0 slug(s) from transcripts: []
+[2026-08-18T12:46:01.157Z] INFO  [QueueWorker] [trace=f9aa82edbff9f38e1def133493f5d6b8] Note registry scan: found 0 uncommitted note(s) on main: []
+[2026-08-18T12:46:01.157Z] INFO  [QueueWorker] [trace=f9aa82edbff9f38e1def133493f5d6b8] Note association: detected 0 note(s): []
+[2026-08-18T12:46:01.157Z] INFO  [QueueWorker] [trace=f9aa82edbff9f38e1def133493f5d6b8] Reference association: detected 0 ref(s) for branch main
+[2026-08-18T12:46:01.159Z] INFO  [QueueWorker] [trace=f9aa82edbff9f38e1def133493f5d6b8] Summary built for 131bfa81: recap=no, topics=0, plans=absent, notes=absent, references=absent
+[2026-08-18T12:46:01.214Z] INFO  [MetadataManager] [trace=f9aa82edbff9f38e1def133493f5d6b8] Manifest updated: main/auth-gateway-setup-131bfa81.md (commit)
+[2026-08-18T12:46:01.214Z] INFO  [FolderStorage] [trace=f9aa82edbff9f38e1def133493f5d6b8] Markdown generated: main/auth-gateway-setup-131bfa81.md
+[2026-08-18T12:46:01.215Z] INFO  [FolderStorage] [trace=f9aa82edbff9f38e1def133493f5d6b8] Wrote 4 files, deleted 0 (Add summary for 131bfa81: auth & gateway setup)
+[2026-08-18T12:46:01.215Z] INFO  [SummaryStore] [trace=f9aa82edbff9f38e1def133493f5d6b8] Summary stored successfully for commit 131bfa81
+[2026-08-18T12:46:01.219Z] INFO  [QueueWorker] [trace=f9aa82edbff9f38e1def133493f5d6b8] Summary stored successfully for commit 131bfa81 (61ms, 0 plans, 0 notes, 0 references)
+[2026-08-18T12:46:01.220Z] INFO  [QueueWorker] [trace=f9aa82edbff9f38e1def133493f5d6b8] === Pipeline completed in 2.5s ===
+[2026-08-18T12:46:01.220Z] INFO  [QueueWorker] [trace=f9aa82edbff9f38e1def133493f5d6b8] === Summary content (0 topics) ===
+[2026-08-18T12:46:01.221Z] INFO  [QueueWorker] [trace=f9aa82edbff9f38e1def133493f5d6b8] Processed 1 queue entries
+[2026-08-18T12:46:01.221Z] INFO  [PushExecutor] [trace=f9aa82edbff9f38e1def133493f5d6b8] Post-queue push trigger: scheduling drain for 1 newly generated summar(ies)
+[2026-08-18T12:46:01.222Z] INFO  [PushExecutor] [trace=f9aa82edbff9f38e1def133493f5d6b8] processPushPending(post-queue): 1 pending entr(ies) (filtered to 1 hash(es))
+[2026-08-18T12:46:01.227Z] INFO  [PushExecutor] [trace=f9aa82edbff9f38e1def133493f5d6b8] processPushPending(post-queue): not signed in — keeping 1 entries for later
+[2026-08-18T12:46:01.251Z] INFO  [GitOps] [trace=f9aa82edbff9f38e1def133493f5d6b8] Commit 131bfa81: auth & gateway setup
+[2026-08-18T12:46:01.275Z] INFO  [StorageFactory] [trace=f9aa82edbff9f38e1def133493f5d6b8] StorageFactory.create: route=cutover, projectPath=/Users/adarsh/KBC_AI_BE
+[2026-08-18T12:46:01.307Z] INFO  [QueueWorker] [trace=f9aa82edbff9f38e1def133493f5d6b8] === Queue worker finished ===
+[2026-08-18T12:46:01.307Z] INFO  [SessionStartHook] [trace=f9aa82edbff9f38e1def133493f5d6b8] Briefing cache not warmed — nothing to brief on this branch
+[2026-08-18T12:46:01.454Z] INFO  [NoteService] detectNotes found 0 notes (0 in registry)
+[2026-08-18T12:46:01.454Z] INFO  [references] detectReferences(*) found 0 (0 in registry)
+[2026-08-18T12:46:01.454Z] INFO  [PlanService] detectPlans found 0 plans (0 in registry)
+[2026-08-18T12:46:01.454Z] INFO  [SkillProjection] projectActiveSkills: 0 active (0 in registry)
+[2026-08-18T12:46:05.356Z] INFO  [PrePushHook] [trace=31fd1c635ee70e1ccc13ba14f8d94cbd] pre-push hook: remote=origin budget=3000ms
+[2026-08-18T12:46:05.366Z] INFO  [PushPendingStore] [trace=31fd1c635ee70e1ccc13ba14f8d94cbd] Enqueued 1 new push-pending entries (branch=main)
+[2026-08-18T12:46:05.367Z] INFO  [PrePushHook] [trace=31fd1c635ee70e1ccc13ba14f8d94cbd] pre-push: recorded 1 commit(s) across 1 pushed ref(s)
+[2026-08-18T12:46:05.371Z] INFO  [PrePushHook] [trace=31fd1c635ee70e1ccc13ba14f8d94cbd] Recorded 1 commit(s) for later sync — not signed in to Jolli
+[2026-08-18T12:46:05.384Z] INFO  [StorageFactory] [trace=31fd1c635ee70e1ccc13ba14f8d94cbd] StorageFactory.create: route=cutover, projectPath=/Users/adarsh/KBC_AI_BE

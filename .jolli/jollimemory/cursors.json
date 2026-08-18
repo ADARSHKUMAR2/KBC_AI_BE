@@ -13,8 +13,18 @@
 		},
 		"/Users/adarsh/Library/Application Support/Code/User/globalStorage/saoudrizwan.claude-dev/tasks/1787040958878/api_conversation_history.json": {
 			"transcriptPath": "/Users/adarsh/Library/Application Support/Code/User/globalStorage/saoudrizwan.claude-dev/tasks/1787040958878/api_conversation_history.json",
-			"lineNumber": 10,
-			"updatedAt": "2026-08-18T08:27:08.325Z"
+			"lineNumber": 57,
+			"updatedAt": "2026-08-18T12:45:58.969Z"
+		},
+		"/Users/adarsh/Library/Application Support/Code/User/workspaceStorage/aea2b1138ba49bb3400c0065715ab3c1/chatSessions/7e5cab54-d660-4e32-9047-5d02f922ae16.jsonl": {
+			"transcriptPath": "/Users/adarsh/Library/Application Support/Code/User/workspaceStorage/aea2b1138ba49bb3400c0065715ab3c1/chatSessions/7e5cab54-d660-4e32-9047-5d02f922ae16.jsonl",
+			"lineNumber": 0,
+			"updatedAt": "2026-08-18T10:35:54.345Z"
+		},
+		"/Users/adarsh/Library/Application Support/Code/User/globalStorage/saoudrizwan.claude-dev/tasks/1787050474458/api_conversation_history.json": {
+			"transcriptPath": "/Users/adarsh/Library/Application Support/Code/User/globalStorage/saoudrizwan.claude-dev/tasks/1787050474458/api_conversation_history.json",
+			"lineNumber": 64,
+			"updatedAt": "2026-08-18T12:45:58.976Z"
 		}
 	}
 }
