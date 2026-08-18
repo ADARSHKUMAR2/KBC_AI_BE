@@ -1,0 +1,75 @@
+[2026-08-18T08:10:26.660Z] INFO  [SkillProjection] projectActiveSkills: 0 active (0 in registry)
+[2026-08-18T08:10:29.237Z] INFO  [StorageFactory] StorageFactory.create: route=uncutover, projectPath=/Users/adarsh/KBC_AI_BE
+[2026-08-18T08:10:29.280Z] INFO  [Installer] Checking Jolli Memory status
+[2026-08-18T08:10:30.629Z] INFO  [Installer] Checking Jolli Memory status
+[2026-08-18T08:10:30.670Z] INFO  [bridge] Merged mode activated {"branch":"main","creationPoint":"ebbda067","author":"Adarsh"}
+[2026-08-18T08:10:30.719Z] INFO  [StorageFactory] StorageFactory.create: route=uncutover, projectPath=/Users/adarsh/KBC_AI_BE
+[2026-08-18T08:10:30.837Z] INFO  [StorageFactory] StorageFactory.create: route=uncutover, projectPath=/Users/adarsh/KBC_AI_BE
+[2026-08-18T08:10:30.943Z] INFO  [SchemaV5Migration] Storage backend not initialized yet — skipping schema v5 migration (no data to migrate)
+[2026-08-18T08:10:30.943Z] INFO  [activate] Schema v5 migration: alreadyDone=false fresh=true migrated=0 skipped=0
+[2026-08-18T08:10:31.453Z] INFO  [Installer] Status: enabled=false, claude=false, git=false, geminiHook=false, worktreeHooks=false, sessions=1, summaries=0, codex=false/undefined, gemini=true/true, enabledWorktrees=0, opencode=false/undefined, cursor=true/true, copilot=false/true, copilotChat=true, cline=true/true
+[2026-08-18T08:10:31.466Z] INFO  [Installer] Checking Jolli Memory status
+[2026-08-18T08:10:31.467Z] INFO  [Installer] Status: enabled=false, claude=false, git=false, geminiHook=false, worktreeHooks=false, sessions=1, summaries=0, codex=false/undefined, gemini=true/true, enabledWorktrees=0, opencode=false/undefined, cursor=true/true, copilot=false/true, copilotChat=true, cline=true/true
+[2026-08-18T08:10:31.469Z] INFO  [initialLoad] All panels loaded — updating status bar
+[2026-08-18T08:10:31.469Z] INFO  [Installer] Checking Jolli Memory status
+[2026-08-18T08:10:31.635Z] INFO  [Installer] Status: enabled=false, claude=false, git=false, geminiHook=false, worktreeHooks=false, sessions=1, summaries=0, codex=false/undefined, gemini=true/true, enabledWorktrees=0, opencode=false/undefined, cursor=true/true, copilot=false/true, copilotChat=true, cline=true/true
+[2026-08-18T08:10:31.686Z] INFO  [Installer] Status: enabled=false, claude=false, git=false, geminiHook=false, worktreeHooks=false, sessions=1, summaries=0, codex=false/undefined, gemini=true/true, enabledWorktrees=0, opencode=false/undefined, cursor=true/true, copilot=false/true, copilotChat=true, cline=true/true
+[2026-08-18T08:10:31.687Z] INFO  [Installer] Checking Jolli Memory status
+[2026-08-18T08:10:31.720Z] INFO  [StorageFactory] StorageFactory.create: route=uncutover, projectPath=/Users/adarsh/KBC_AI_BE
+[2026-08-18T08:10:32.065Z] INFO  [Installer] Status: enabled=false, claude=false, git=false, geminiHook=false, worktreeHooks=false, sessions=1, summaries=0, codex=false/undefined, gemini=true/true, enabledWorktrees=0, opencode=false/undefined, cursor=true/true, copilot=false/true, copilotChat=true, cline=true/true
+[2026-08-18T08:10:32.067Z] INFO  [activate] Auto-enabling Jolli Memory (no opt-out recorded)
+[2026-08-18T08:10:32.067Z] INFO  [bridge] enable() called
+[2026-08-18T08:10:32.067Z] INFO  [Installer] Installing Jolli Memory hooks
+[2026-08-18T08:10:32.086Z] INFO  [DispatchScripts] Wrote resolve-dist-path, run-hook, and run-cli scripts to /Users/adarsh/.jolli/jollimemory
+[2026-08-18T08:10:32.087Z] INFO  [DistPathWriter] Wrote dist-paths/vscode (version=0.99.13, distDir=/Users/adarsh/.vscode/extensions/jolli.jollimemory-vscode-0.99.13/dist)
+[2026-08-18T08:10:32.090Z] INFO  [SkillInstaller] Wrote SKILL.md (revision 2) to /Users/adarsh/KBC_AI_BE/.agents/skills/jolli-recall/SKILL.md
+[2026-08-18T08:10:32.090Z] INFO  [SkillInstaller] Wrote SKILL.md (revision 2) to /Users/adarsh/KBC_AI_BE/.agents/skills/jolli-search/SKILL.md
+[2026-08-18T08:10:32.091Z] INFO  [SkillInstaller] Wrote SKILL.md (revision 5) to /Users/adarsh/KBC_AI_BE/.agents/skills/jolli-local-run/SKILL.md
+[2026-08-18T08:10:32.092Z] INFO  [SkillInstaller] Wrote SKILL.md (revision 4) to /Users/adarsh/KBC_AI_BE/.agents/skills/jolli-remote-run/SKILL.md
+[2026-08-18T08:10:32.092Z] INFO  [SkillInstaller] Wrote SKILL.md (revision 7) to /Users/adarsh/KBC_AI_BE/.agents/skills/jolli/SKILL.md
+[2026-08-18T08:10:32.119Z] INFO  [GitExclude] Updated /Users/adarsh/KBC_AI_BE/.git/info/exclude with 8 Jolli skill exclude paths
+[2026-08-18T08:10:32.128Z] INFO  [McpRegistration] Registered MCP server in /Users/adarsh/KBC_AI_BE/.mcp.json
+[2026-08-18T08:10:32.139Z] INFO  [JsonMcpWriter] Registered MCP server in /Users/adarsh/KBC_AI_BE/.cursor/mcp.json
+[2026-08-18T08:10:32.152Z] INFO  [JsonMcpWriter] MCP server already registered in /Users/adarsh/.gemini/settings.json — no write needed
+[2026-08-18T08:10:32.152Z] INFO  [JsonMcpWriter] MCP server already registered in /Users/adarsh/Library/Application Support/Code/User/mcp.json — no write needed
+[2026-08-18T08:10:32.153Z] INFO  [JsonMcpWriter] MCP server already registered in /Users/adarsh/Library/Application Support/Code/User/globalStorage/saoudrizwan.claude-dev/settings/cline_mcp_settings.json — no write needed
+[2026-08-18T08:10:32.156Z] INFO  [JsonMcpWriter] MCP server already registered in /Users/adarsh/.config/devin/config.json — no write needed
+[2026-08-18T08:10:32.157Z] INFO  [JsonMcpWriter] MCP server already registered in /Users/adarsh/.gemini/config/mcp_config.json — no write needed
+[2026-08-18T08:10:32.160Z] INFO  [GitHookInstaller] Git post-commit hook installed
+[2026-08-18T08:10:32.161Z] INFO  [GitHookInstaller] Git post-rewrite hook installed
+[2026-08-18T08:10:32.164Z] INFO  [GitHookInstaller] Git prepare-commit-msg hook installed
+[2026-08-18T08:10:32.164Z] INFO  [GitHookInstaller] Git post-merge hook installed
+[2026-08-18T08:10:32.170Z] INFO  [GitHookInstaller] Git pre-push hook installed
+[2026-08-18T08:10:32.171Z] INFO  [GeminiHookInstaller] Gemini AfterAgent hook installed
+[2026-08-18T08:10:32.171Z] INFO  [Installer] Skipping v5 migration on vscode-extension source — Extension.ts owns it with UI
+[2026-08-18T08:10:32.171Z] INFO  [Installer] Installation complete
+[2026-08-18T08:10:32.172Z] INFO  [Installer] Checking Jolli Memory status
+[2026-08-18T08:10:32.338Z] INFO  [Installer] Status: enabled=true, claude=true, git=true, geminiHook=true, worktreeHooks=true, sessions=1, summaries=0, codex=false/undefined, gemini=true/true, enabledWorktrees=1, opencode=false/undefined, cursor=true/true, copilot=false/true, copilotChat=true, cline=true/true
+[2026-08-18T08:10:32.341Z] INFO  [Installer] Checking Jolli Memory status
+[2026-08-18T08:10:32.343Z] INFO  [Installer] Checking Jolli Memory status
+[2026-08-18T08:10:32.521Z] INFO  [Installer] Status: enabled=true, claude=true, git=true, geminiHook=true, worktreeHooks=true, sessions=1, summaries=0, codex=false/undefined, gemini=true/true, enabledWorktrees=1, opencode=false/undefined, cursor=true/true, copilot=false/true, copilotChat=true, cline=true/true
+[2026-08-18T08:10:32.522Z] INFO  [Installer] Status: enabled=true, claude=true, git=true, geminiHook=true, worktreeHooks=true, sessions=1, summaries=0, codex=false/undefined, gemini=true/true, enabledWorktrees=1, opencode=false/undefined, cursor=true/true, copilot=false/true, copilotChat=true, cline=true/true
+[2026-08-18T08:10:52.243Z] INFO  [activate] Activating JolliMemory extension {"workspaceRoot":"/Users/adarsh/KBC_AI_BE","extensionPath":"/Users/adarsh/.vscode/extensions/jolli.jollimemory-vscode-0.99.13"}
+[2026-08-18T08:10:52.336Z] INFO  [initialLoad] Loading all panels
+[2026-08-18T08:10:52.436Z] INFO  [PlanService] detectPlans found 0 plans (0 in registry)
+[2026-08-18T08:10:52.436Z] INFO  [NoteService] detectNotes found 0 notes (0 in registry)
+[2026-08-18T08:10:52.436Z] INFO  [references] detectReferences(*) found 0 (0 in registry)
+[2026-08-18T08:10:52.436Z] INFO  [SkillProjection] projectActiveSkills: 0 active (0 in registry)
+[2026-08-18T08:10:56.450Z] INFO  [StorageFactory] StorageFactory.create: route=uncutover, projectPath=/Users/adarsh/KBC_AI_BE
+[2026-08-18T08:10:56.550Z] INFO  [Installer] Checking Jolli Memory status
+[2026-08-18T08:10:56.550Z] INFO  [Installer] Checking Jolli Memory status
+[2026-08-18T08:10:56.705Z] INFO  [bridge] Merged mode activated {"branch":"main","creationPoint":"ebbda067","author":"Adarsh"}
+[2026-08-18T08:10:56.767Z] INFO  [StorageFactory] StorageFactory.create: route=uncutover, projectPath=/Users/adarsh/KBC_AI_BE
+[2026-08-18T08:10:56.848Z] INFO  [StorageFactory] StorageFactory.create: route=uncutover, projectPath=/Users/adarsh/KBC_AI_BE
+[2026-08-18T08:10:57.107Z] INFO  [SchemaV5Migration] Storage backend not initialized yet — skipping schema v5 migration (no data to migrate)
+[2026-08-18T08:10:57.107Z] INFO  [activate] Schema v5 migration: alreadyDone=false fresh=true migrated=0 skipped=0
+[2026-08-18T08:10:57.718Z] INFO  [Installer] Status: enabled=true, claude=true, git=true, geminiHook=true, worktreeHooks=true, sessions=2, summaries=0, codex=false/undefined, gemini=true/true, enabledWorktrees=1, opencode=false/undefined, cursor=true/true, copilot=false/true, copilotChat=true, cline=true/true
+[2026-08-18T08:10:57.719Z] INFO  [initialLoad] All panels loaded — updating status bar
+[2026-08-18T08:10:57.719Z] INFO  [Installer] Checking Jolli Memory status
+[2026-08-18T08:10:57.745Z] INFO  [Installer] Status: enabled=true, claude=true, git=true, geminiHook=true, worktreeHooks=true, sessions=2, summaries=0, codex=false/undefined, gemini=true/true, enabledWorktrees=1, opencode=false/undefined, cursor=true/true, copilot=false/true, copilotChat=true, cline=true/true
+[2026-08-18T08:10:57.746Z] INFO  [Installer] Checking Jolli Memory status
+[2026-08-18T08:10:57.911Z] INFO  [Installer] Status: enabled=true, claude=true, git=true, geminiHook=true, worktreeHooks=true, sessions=2, summaries=0, codex=false/undefined, gemini=true/true, enabledWorktrees=1, opencode=false/undefined, cursor=true/true, copilot=false/true, copilotChat=true, cline=true/true
+[2026-08-18T08:10:57.919Z] INFO  [StorageFactory] StorageFactory.create: route=uncutover, projectPath=/Users/adarsh/KBC_AI_BE
+[2026-08-18T08:10:58.052Z] INFO  [Installer] Status: enabled=true, claude=true, git=true, geminiHook=true, worktreeHooks=true, sessions=2, summaries=0, codex=false/undefined, gemini=true/true, enabledWorktrees=1, opencode=false/undefined, cursor=true/true, copilot=false/true, copilotChat=true, cline=true/true
+[2026-08-18T08:10:58.054Z] INFO  [Installer] Checking Jolli Memory status
+[2026-08-18T08:10:58.357Z] INFO  [Installer] Status: enabled=true, claude=true, git=true, geminiHook=true, worktreeHooks=true, sessions=2, summaries=0, codex=false/undefined, gemini=true/true, enabledWorktrees=1, opencode=false/undefined, cursor=true/true, copilot=false/true, copilotChat=true, cline=true/true
