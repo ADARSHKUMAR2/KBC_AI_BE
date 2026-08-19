@@ -696,3 +696,60 @@
 [2026-08-19T11:00:17.089Z] INFO  [NoteService] detectNotes found 0 notes (0 in registry)
 [2026-08-19T11:00:17.089Z] INFO  [references] detectReferences(*) found 0 (0 in registry)
 [2026-08-19T11:00:17.089Z] INFO  [SkillProjection] projectActiveSkills: 0 active (0 in registry)
+[2026-08-19T13:00:15.261Z] INFO  [PrepareMsgHook] === Prepare-commit-msg hook started (source: message) ===
+[2026-08-19T13:00:15.292Z] INFO  [PrepareMsgHook] === Prepare-commit-msg hook finished ===
+[2026-08-19T13:00:15.658Z] INFO  [PostCommitHook] [trace=8be508d1b8504a2d8b9830f23d4e71b1] Detected operation: commit
+[2026-08-19T13:00:15.693Z] INFO  [PostCommitHook] [trace=8be508d1b8504a2d8b9830f23d4e71b1] Enqueued: type=commit hash=3ec5b40c
+[2026-08-19T13:00:15.693Z] INFO  [QueueWorker] [trace=8be508d1b8504a2d8b9830f23d4e71b1] Launching background worker
+[2026-08-19T13:00:15.695Z] INFO  [QueueWorker] [trace=8be508d1b8504a2d8b9830f23d4e71b1] Background worker spawned (PID: 39792)
+[2026-08-19T13:00:15.697Z] INFO  [EnsureGlobalDaemon] [trace=8be508d1b8504a2d8b9830f23d4e71b1] spawned global daemon ensure helper (pid 39793)
+[2026-08-19T13:00:16.211Z] INFO  [QueueWorker] [trace=8be508d1b8504a2d8b9830f23d4e71b1] === Queue worker started === node=24.13.0 kind=vscode-plugin source=vscode pkgVer=0.99.13 cliVer=0.99.13 dist=/Users/adarsh/.vscode/extensions/jolli.jollimemory-vscode-0.99.13/dist
+[2026-08-19T13:00:16.221Z] INFO  [StorageFactory] [trace=8be508d1b8504a2d8b9830f23d4e71b1] StorageFactory.create: route=cutover, projectPath=/Users/adarsh/KBC_AI_BE
+[2026-08-19T13:00:16.300Z] INFO  [QueueWorker] [trace=8be508d1b8504a2d8b9830f23d4e71b1] Processing queue entry: type=commit hash=3ec5b40c
+[2026-08-19T13:00:16.325Z] INFO  [GitOps] [trace=8be508d1b8504a2d8b9830f23d4e71b1] Commit 3ec5b40c: added traitor and economy logic
+[2026-08-19T13:00:16.325Z] INFO  [QueueWorker] [trace=8be508d1b8504a2d8b9830f23d4e71b1] Commit: 3ec5b40c - added traitor and economy logic (19ms)
+[2026-08-19T13:00:16.492Z] INFO  [QueueWorker] [trace=8be508d1b8504a2d8b9830f23d4e71b1] Discovered 3 Copilot Chat session(s)
+[2026-08-19T13:00:16.497Z] INFO  [QueueWorker] [trace=8be508d1b8504a2d8b9830f23d4e71b1] Discovered 7 Cline (VS Code) session(s)
+[2026-08-19T13:00:16.717Z] INFO  [QueueWorker] [trace=8be508d1b8504a2d8b9830f23d4e71b1] Transcript source: session=1787122800468, lines=70→98, entries=1
+[2026-08-19T13:00:16.727Z] INFO  [QueueWorker] [trace=8be508d1b8504a2d8b9830f23d4e71b1] Transcript source: session=1787141638678, lines=0→54, entries=52
+[2026-08-19T13:00:16.791Z] INFO  [QueueWorker] [trace=8be508d1b8504a2d8b9830f23d4e71b1] Git diff: 13 files changed, +214 -47 (63ms)
+[2026-08-19T13:00:16.837Z] INFO  [TranscriptReader] [trace=8be508d1b8504a2d8b9830f23d4e71b1] Conversation budget reached: kept 41/53 transcript entries (~149558/150000 chars); older turns dropped
+[2026-08-19T13:00:16.928Z] INFO  [QueueWorker] [trace=8be508d1b8504a2d8b9830f23d4e71b1] Prompt blocks: plans=0 notes=0 references=0 (+0 track-only archived, not prompted) (AI soft-excluded 0)
+[2026-08-19T13:00:16.929Z] INFO  [Summarizer] [trace=8be508d1b8504a2d8b9830f23d4e71b1] Generating summary for commit 3ec5b40c
+[2026-08-19T13:00:16.929Z] INFO  [Summarizer] [trace=8be508d1b8504a2d8b9830f23d4e71b1] Context: transcript=53, files=13, lines=214+47
+[2026-08-19T13:00:16.930Z] WARN  [QueueWorker] [trace=8be508d1b8504a2d8b9830f23d4e71b1] First API attempt failed: No LLM provider available. Set an Anthropic API key (ANTHROPIC_API_KEY) or configure a Jolli Space API key (jolliApiKey).. Retrying in 2000ms...
+[2026-08-19T13:00:18.938Z] INFO  [Summarizer] [trace=8be508d1b8504a2d8b9830f23d4e71b1] Generating summary for commit 3ec5b40c
+[2026-08-19T13:00:18.940Z] INFO  [Summarizer] [trace=8be508d1b8504a2d8b9830f23d4e71b1] Context: transcript=53, files=13, lines=214+47
+[2026-08-19T13:00:18.941Z] ERROR [QueueWorker] [trace=8be508d1b8504a2d8b9830f23d4e71b1] API call failed after retry: No LLM provider available. Set an Anthropic API key (ANTHROPIC_API_KEY) or configure a Jolli Space API key (jolliApiKey).
+[2026-08-19T13:00:18.942Z] WARN  [QueueWorker] [trace=8be508d1b8504a2d8b9830f23d4e71b1] Saving summary with empty topics + llm-failed marker for commit 3ec5b40c
+[2026-08-19T13:00:18.943Z] INFO  [QueueWorker] [trace=8be508d1b8504a2d8b9830f23d4e71b1] API summary generated (2.0s)
+[2026-08-19T13:00:18.944Z] INFO  [QueueWorker] [trace=8be508d1b8504a2d8b9830f23d4e71b1] Plan registry scan: found 0 uncommitted slug(s) on main: []
+[2026-08-19T13:00:18.944Z] INFO  [QueueWorker] [trace=8be508d1b8504a2d8b9830f23d4e71b1] Plan association: detected 0 slug(s) from transcripts: []
+[2026-08-19T13:00:18.944Z] INFO  [QueueWorker] [trace=8be508d1b8504a2d8b9830f23d4e71b1] Note registry scan: found 0 uncommitted note(s) on main: []
+[2026-08-19T13:00:18.944Z] INFO  [QueueWorker] [trace=8be508d1b8504a2d8b9830f23d4e71b1] Note association: detected 0 note(s): []
+[2026-08-19T13:00:18.945Z] INFO  [QueueWorker] [trace=8be508d1b8504a2d8b9830f23d4e71b1] Reference association: detected 0 ref(s) for branch main
+[2026-08-19T13:00:18.950Z] INFO  [QueueWorker] [trace=8be508d1b8504a2d8b9830f23d4e71b1] Summary built for 3ec5b40c: recap=no, topics=0, plans=absent, notes=absent, references=absent
+[2026-08-19T13:00:19.038Z] INFO  [MetadataManager] [trace=8be508d1b8504a2d8b9830f23d4e71b1] Manifest updated: main/added-traitor-and-economy-logic-3ec5b40c.md (commit)
+[2026-08-19T13:00:19.038Z] INFO  [FolderStorage] [trace=8be508d1b8504a2d8b9830f23d4e71b1] Markdown generated: main/added-traitor-and-economy-logic-3ec5b40c.md
+[2026-08-19T13:00:19.041Z] INFO  [FolderStorage] [trace=8be508d1b8504a2d8b9830f23d4e71b1] Wrote 4 files, deleted 0 (Add summary for 3ec5b40c: added traitor and economy logic)
+[2026-08-19T13:00:19.042Z] INFO  [SummaryStore] [trace=8be508d1b8504a2d8b9830f23d4e71b1] Summary stored successfully for commit 3ec5b40c
+[2026-08-19T13:00:19.056Z] INFO  [QueueWorker] [trace=8be508d1b8504a2d8b9830f23d4e71b1] Summary stored successfully for commit 3ec5b40c (106ms, 0 plans, 0 notes, 0 references)
+[2026-08-19T13:00:19.056Z] INFO  [QueueWorker] [trace=8be508d1b8504a2d8b9830f23d4e71b1] === Pipeline completed in 2.8s ===
+[2026-08-19T13:00:19.056Z] INFO  [QueueWorker] [trace=8be508d1b8504a2d8b9830f23d4e71b1] === Summary content (0 topics) ===
+[2026-08-19T13:00:19.059Z] INFO  [QueueWorker] [trace=8be508d1b8504a2d8b9830f23d4e71b1] Processed 1 queue entries
+[2026-08-19T13:00:19.060Z] INFO  [PushExecutor] [trace=8be508d1b8504a2d8b9830f23d4e71b1] Post-queue push trigger: scheduling drain for 1 newly generated summar(ies)
+[2026-08-19T13:00:19.062Z] INFO  [PushExecutor] [trace=8be508d1b8504a2d8b9830f23d4e71b1] processPushPending(post-queue): 7 pending entr(ies) (filtered to 1 hash(es))
+[2026-08-19T13:00:19.070Z] INFO  [PushExecutor] [trace=8be508d1b8504a2d8b9830f23d4e71b1] processPushPending(post-queue): not signed in — keeping 7 entries for later
+[2026-08-19T13:00:19.118Z] INFO  [GitOps] [trace=8be508d1b8504a2d8b9830f23d4e71b1] Commit 3ec5b40c: added traitor and economy logic
+[2026-08-19T13:00:19.184Z] INFO  [StorageFactory] [trace=8be508d1b8504a2d8b9830f23d4e71b1] StorageFactory.create: route=cutover, projectPath=/Users/adarsh/KBC_AI_BE
+[2026-08-19T13:00:19.269Z] INFO  [QueueWorker] [trace=8be508d1b8504a2d8b9830f23d4e71b1] === Queue worker finished ===
+[2026-08-19T13:00:19.270Z] INFO  [SessionStartHook] [trace=8be508d1b8504a2d8b9830f23d4e71b1] Briefing cache not warmed — nothing to brief on this branch
+[2026-08-19T13:00:19.421Z] INFO  [PlanService] detectPlans found 0 plans (0 in registry)
+[2026-08-19T13:00:19.421Z] INFO  [NoteService] detectNotes found 0 notes (0 in registry)
+[2026-08-19T13:00:19.422Z] INFO  [references] detectReferences(*) found 0 (0 in registry)
+[2026-08-19T13:00:19.422Z] INFO  [SkillProjection] projectActiveSkills: 0 active (0 in registry)
+[2026-08-19T13:00:30.318Z] INFO  [PrePushHook] [trace=e253662a530b3f1f2201b9815c371ea0] pre-push hook: remote=origin budget=3000ms
+[2026-08-19T13:00:30.546Z] INFO  [PushPendingStore] [trace=e253662a530b3f1f2201b9815c371ea0] Enqueued 1 new push-pending entries (branch=main)
+[2026-08-19T13:00:30.548Z] INFO  [PrePushHook] [trace=e253662a530b3f1f2201b9815c371ea0] pre-push: recorded 1 commit(s) across 1 pushed ref(s)
+[2026-08-19T13:00:30.564Z] INFO  [PrePushHook] [trace=e253662a530b3f1f2201b9815c371ea0] Recorded 1 commit(s) for later sync — not signed in to Jolli
+[2026-08-19T13:00:30.612Z] INFO  [StorageFactory] [trace=e253662a530b3f1f2201b9815c371ea0] StorageFactory.create: route=cutover, projectPath=/Users/adarsh/KBC_AI_BE

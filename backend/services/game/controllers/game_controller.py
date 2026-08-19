@@ -199,7 +199,7 @@ class GameController:
     
     async def start_session(self, user_id: str) -> dict:
         """
-        Start a new game session for a user.
+        Start a new game session for a user OR resume an existing active one.
         
         This is called when Unity hits: POST /game/session/start
         
@@ -219,6 +219,38 @@ class GameController:
         Returns:
             Dict containing session_id, first question, and expert advice
         """
+        # ── RESUME LOGIC ───────────────────────────────────────
+        existing_session = await GameSession.find_one(
+            GameSession.user_id == user_id,
+            GameSession.session_status == SessionStatus.ACTIVE
+        )
+        
+        if existing_session:
+            print(f"🔄 Resuming active session for user {user_id}")
+            current_question_id = existing_session.get_current_question_id()
+            question = await Question.get(PydanticObjectId(current_question_id))
+            
+            expert_advice_list = [
+                self._generate_expert_advice(e, question, existing_session.saboteur_expert_name)
+                for e in existing_session.assigned_experts
+            ]
+            
+            return {
+                "session_id": str(existing_session.id),
+                "status": "resumed",
+                "total_questions": existing_session.total_questions,
+                "question": {
+                    "question_text": question.question_text,
+                    "options":       question.options,
+                    "difficulty":    question.difficulty,
+                    "category":      question.category
+                },
+                "expert_advice":           [a.dict() for a in expert_advice_list],
+                "current_question_number": existing_session.current_question_index + 1
+            }
+        # ─────────────────────────────────────────────────────────────
+
+        # If no active session exists, create a new one
         # Step 1: Get random questions
         questions = await self._get_random_questions(count=10)
         question_ids = [str(q.id) for q in questions]
