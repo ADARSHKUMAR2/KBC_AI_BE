@@ -1,9 +1,15 @@
-from fastapi import APIRouter, HTTPException, Header
+from fastapi import APIRouter, HTTPException, Header, Depends
 from typing import Optional
 from pydantic import BaseModel
 
 from backend.services.game.controllers.game_controller import GameController
 from backend.services.auth.models.user import User
+from fastapi.responses import StreamingResponse
+from backend.shared.llm_client import generate_expert_advice_streaming
+
+from backend.services.game.models.game_session import GameSession  
+from backend.services.game.models.question import Question  
+from beanie import PydanticObjectId
 
 # Create router
 router = APIRouter(prefix="/game", tags=["Game"])
@@ -274,6 +280,55 @@ async def get_leaderboard():
         "leaderboard": leaderboard,
         "total_entries": len(leaderboard)
     }
+
+async def get_current_user(firebase_uid: str = Header(..., alias="X-Firebase-UID")) -> str:
+    """
+    Extract Firebase UID from request headers.
+    The Gateway should inject this after validating the JWT token.
+    """
+    if not firebase_uid:
+        raise HTTPException(status_code=401, detail="Authentication required")
+    return firebase_uid
+
+@router.get("/session/{session_id}/question/stream/{expert_name}")
+async def stream_expert_advice(
+    session_id: str,
+    expert_name: str,
+    firebase_uid: str = Depends(get_current_user)
+):
+    """
+    Stream a single expert's advice token-by-token for typewriter effect.
+    Unity can call this for each expert separately.
+    """
+    session = await GameSession.get(PydanticObjectId(session_id))
+    if not session or session.firebase_uid != firebase_uid:
+        raise HTTPException(status_code=404, detail="Session not found")
+    
+    # Find the expert
+    expert = next((e for e in session.assigned_experts if e.name == expert_name), None)
+    if not expert:
+        raise HTTPException(status_code=404, detail="Expert not found")
+    
+    # Get current question
+    current_q = session.questions[session.current_question_index]
+    question = await Question.get(current_q.question_id)
+    
+    # Stream the response
+    is_sab = (expert.name == session.saboteur_expert_name)
+    async def event_generator():
+        async for chunk in generate_expert_advice_streaming(
+            expert_type=expert.personality_type.lower(),
+            question_text=question.question_text,
+            options=question.options,
+            correct_answer=question.options[question.correct_answer],
+            is_saboteur=is_sab
+        ):
+            yield f"data: {chunk}\n\n"
+    
+    return StreamingResponse(
+        event_generator(),
+        media_type="text/event-stream"
+    )
 
 # ========== HEALTH CHECK ==========
 

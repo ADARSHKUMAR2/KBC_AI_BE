@@ -60,3 +60,16 @@
 * **Unity Integration:**
   * Update the `NetworkManager` to handle delayed or streaming text (typewriter effect) as the LLM generates the response.
   * Add richer UI interactions, like asking an expert to elaborate (firing another LLM prompt).
+
+### **Phase 5: Real-Time News Trivia (LangGraph + MCP)**
+*Goal: Dynamically generate new trivia questions based on real-time news using LangGraph and Model Context Protocol (MCP) servers.*
+* **Backend Tasks:**
+  * Integrate LangGraph for complex agentic workflows.
+  * Connect an MCP server (e.g., brave-search or custom News API) to fetch current events.
+  * Build a Research Node to gather top daily news stories.
+  * Build a Writer Node to draft a multiple-choice question from the news context.
+  * Build a Validator Node to ensure accuracy and plausible distractor options.
+  * Save the generated questions to the MongoDB `Question` collection with a "Current Events" category.
+* **Unity Integration:**
+  * Highlight "Daily News" category in the UI.
+  * (Optional) Show "Generating Live Question..." loading state if generated on-demand.

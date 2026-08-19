@@ -11,6 +11,7 @@ from backend.services.game.models.game_session import GameSession, SessionStatus
 
 from backend.services.auth.models.user import User
 from backend.shared.redis_client import get_redis
+from backend.shared.llm_client import generate_expert_advice
 
 # ── COIN ECONOMY CONSTANTS ───────────────────────────────────────────
 COINS_PER_CORRECT_ANSWER  = 100   # earned for every correct answer
@@ -301,6 +302,8 @@ class GameController:
     
     async def get_current_question(self, session_id: str) -> dict:
         """
+        Get current question with DYNAMIC LLM-generated expert advice
+
         Fetch the current question for an active session.
         
         Called by Unity when: GET /game/session/{session_id}/question
@@ -319,6 +322,9 @@ class GameController:
         
         if not session:
             raise HTTPException(status_code=404, detail="Game session not found")
+
+        if session.current_question_index >= len(session.question_ids):
+            return {"status": "completed", "final_score": session.score}    
         
         if session.is_complete():
             raise HTTPException(
@@ -327,17 +333,31 @@ class GameController:
             )
         
         # Get current question ID and fetch the Question document
-        current_question_id = session.get_current_question_id()
-        question = await Question.get(PydanticObjectId(current_question_id))
+        current_q_id = session.question_ids[session.current_question_index]
+        question = await Question.get(PydanticObjectId(current_q_id))
         
         if not question:
-            raise HTTPException(status_code=500, detail="Question not found in database")
+            raise HTTPException(status_code=404, detail="Question not found")
         
-        # Generate expert advice for this question
-        expert_advice_list = [
-            self._generate_expert_advice(expert, question)
-            for expert in session.assigned_experts
-        ]
+        # Generate dynamic expert advice using LLM
+        expert_opinions = []
+        for expert in session.assigned_experts:
+            is_sab = (expert.name == session.saboteur_expert_name)
+            advice = await generate_expert_advice(
+                expert_type=expert.personality_type.lower(),
+                question_text=question.question_text,    # Error: it's question_text, not text
+                options=question.options,
+                correct_answer=question.options[question.correct_answer],
+                is_saboteur=is_sab
+            )
+            print(f"✅ Generated expert advice for {expert.name}: {advice}")
+            
+            expert_opinions.append({
+                "expert_name": expert.name,
+                "advice_text": advice["dialogue"],
+                "confidence_percentage": advice["confidence"],
+                "recommended_option": 0  # LLM doesn't easily return an index, so we hardcode 0 for now to prevent NullReference, or we can parse it.
+            })
         
         return {
             "session_id": session_id,
@@ -347,9 +367,9 @@ class GameController:
                 "difficulty": question.difficulty,
                 "category": question.category
             },
-            "expert_advice": [advice.dict() for advice in expert_advice_list],
+            "expert_advice": expert_opinions,
             "current_question_number": session.current_question_index + 1,
-            "total_questions": session.total_questions,
+            "total_questions": len(session.question_ids),
             "current_score": session.score
         }
     

@@ -39,6 +39,13 @@
 - [ ] **Prompt Engineering:** Create specific personality prompts (Historian, Risky, Saboteur).
 - [ ] **Streaming:** Stream responses to Gateway -> Unity.
 
+### ⏳ Pending Tasks: Phase 5 (Real-Time News Trivia with LangGraph & MCP)
+- [ ] **Graph Setup:** Initialize LangGraph state and workflow.
+- [ ] **MCP Integration:** Connect an MCP server (e.g., brave-search) to fetch real-time news.
+- [ ] **Agent Nodes:** Build Research, Writer, and Validator nodes.
+- [ ] **Data Pipeline:** Save generated questions to the database tagged with "Current Events".
+- [ ] **Unity Updates:** Add UI for "Daily News" category and on-demand generation loading states.
+
 ### ⏳ Pending Tasks: Unity (Frontend)
 - [ ] **Setup:** Create new 2D project, setup scene structure.
 - [ ] **UI:** Build Login/Register Canvas.
