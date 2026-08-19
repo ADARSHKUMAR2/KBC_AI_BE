@@ -1,0 +1,162 @@
+[
+  {
+    "question_text": "Who painted the Mona Lisa?",
+    "options": ["Leonardo da Vinci", "Pablo Picasso", "Vincent van Gogh", "Michelangelo"],
+    "correct_answer": 0,
+    "difficulty": "easy",
+    "category": "art",
+    "explanation": "Leonardo da Vinci painted the Mona Lisa between 1503 and 1519. It's now displayed at the Louvre Museum in Paris."
+  },
+  {
+    "question_text": "What is the capital of Australia?",
+    "options": ["Sydney", "Melbourne", "Canberra", "Brisbane"],
+    "correct_answer": 2,
+    "difficulty": "medium",
+    "category": "geography",
+    "explanation": "Canberra became the capital of Australia in 1913. Many people incorrectly assume it's Sydney, which is the largest city."
+  },
+  {
+    "question_text": "Which planet is known as the Red Planet?",
+    "options": ["Venus", "Mars", "Jupiter", "Saturn"],
+    "correct_answer": 1,
+    "difficulty": "easy",
+    "category": "science",
+    "explanation": "Mars is called the Red Planet due to iron oxide (rust) on its surface, giving it a reddish appearance."
+  },
+  {
+    "question_text": "In which year did World War II end?",
+    "options": ["1943", "1944", "1945", "1946"],
+    "correct_answer": 2,
+    "difficulty": "medium",
+    "category": "history",
+    "explanation": "World War II ended in 1945. Germany surrendered in May, and Japan surrendered in September after the atomic bombs."
+  },
+  {
+    "question_text": "What is the largest ocean on Earth?",
+    "options": ["Atlantic Ocean", "Indian Ocean", "Arctic Ocean", "Pacific Ocean"],
+    "correct_answer": 3,
+    "difficulty": "easy",
+    "category": "geography",
+    "explanation": "The Pacific Ocean covers approximately 63 million square miles, making it larger than all of Earth's land area combined."
+  },
+  {
+    "question_text": "Who wrote 'Romeo and Juliet'?",
+    "options": ["Charles Dickens", "William Shakespeare", "Jane Austen", "Mark Twain"],
+    "correct_answer": 1,
+    "difficulty": "easy",
+    "category": "literature",
+    "explanation": "William Shakespeare wrote Romeo and Juliet around 1594-1596. It's one of his most famous tragic plays."
+  },
+  {
+    "question_text": "What is the smallest prime number?",
+    "options": ["0", "1", "2", "3"],
+    "correct_answer": 2,
+    "difficulty": "medium",
+    "category": "mathematics",
+    "explanation": "2 is the smallest prime number and the only even prime. 1 is not considered prime by modern mathematical definitions."
+  },
+  {
+    "question_text": "Which element has the chemical symbol 'Au'?",
+    "options": ["Silver", "Gold", "Aluminum", "Argon"],
+    "correct_answer": 1,
+    "difficulty": "medium",
+    "category": "science",
+    "explanation": "Gold's chemical symbol 'Au' comes from the Latin word 'aurum', meaning 'shining dawn'."
+  },
+  {
+    "question_text": "How many continents are there?",
+    "options": ["5", "6", "7", "8"],
+    "correct_answer": 2,
+    "difficulty": "easy",
+    "category": "geography",
+    "explanation": "There are 7 continents: Africa, Antarctica, Asia, Europe, North America, Oceania, and South America."
+  },
+  {
+    "question_text": "What is the speed of light?",
+    "options": ["299,792 km/s", "150,000 km/s", "500,000 km/s", "1,000,000 km/s"],
+    "correct_answer": 0,
+    "difficulty": "hard",
+    "category": "science",
+    "explanation": "The speed of light in a vacuum is approximately 299,792 kilometers per second (186,282 miles per second)."
+  },
+  {
+    "question_text": "Who was the first President of the United States?",
+    "options": ["Thomas Jefferson", "George Washington", "Abraham Lincoln", "John Adams"],
+    "correct_answer": 1,
+    "difficulty": "easy",
+    "category": "history",
+    "explanation": "George Washington served as the first President from 1789 to 1797."
+  },
+  {
+    "question_text": "What is the largest mammal in the world?",
+    "options": ["African Elephant", "Blue Whale", "Giraffe", "Polar Bear"],
+    "correct_answer": 1,
+    "difficulty": "easy",
+    "category": "biology",
+    "explanation": "The Blue Whale can grow up to 100 feet long and weigh up to 200 tons, making it the largest animal ever known to have existed."
+  },
+  {
+    "question_text": "In what year did the Titanic sink?",
+    "options": ["1910", "1911", "1912", "1913"],
+    "correct_answer": 2,
+    "difficulty": "medium",
+    "category": "history",
+    "explanation": "The RMS Titanic sank on April 15, 1912, during its maiden voyage from Southampton to New York City."
+  },
+  {
+    "question_text": "What is the chemical formula for water?",
+    "options": ["CO2", "H2O", "O2", "H2O2"],
+    "correct_answer": 1,
+    "difficulty": "easy",
+    "category": "science",
+    "explanation": "Water is composed of two hydrogen atoms and one oxygen atom, hence H2O."
+  },
+  {
+    "question_text": "Which country is home to the kangaroo?",
+    "options": ["New Zealand", "Australia", "South Africa", "India"],
+    "correct_answer": 1,
+    "difficulty": "easy",
+    "category": "geography",
+    "explanation": "Kangaroos are native to Australia and are one of the country's most iconic animals."
+  },
+  {
+    "question_text": "How many strings does a standard guitar have?",
+    "options": ["4", "5", "6", "7"],
+    "correct_answer": 2,
+    "difficulty": "easy",
+    "category": "music",
+    "explanation": "A standard acoustic or electric guitar has 6 strings, typically tuned to E-A-D-G-B-E."
+  },
+  {
+    "question_text": "What is the tallest mountain in the world?",
+    "options": ["K2", "Mount Kilimanjaro", "Mount Everest", "Denali"],
+    "correct_answer": 2,
+    "difficulty": "easy",
+    "category": "geography",
+    "explanation": "Mount Everest stands at 8,848.86 meters (29,031.7 feet) above sea level, making it the highest mountain on Earth."
+  },
+  {
+    "question_text": "Who developed the theory of relativity?",
+    "options": ["Isaac Newton", "Albert Einstein", "Stephen Hawking", "Niels Bohr"],
+    "correct_answer": 1,
+    "difficulty": "easy",
+    "category": "science",
+    "explanation": "Albert Einstein developed both the special (1905) and general (1915) theories of relativity."
+  },
+  {
+    "question_text": "What is the largest desert in the world?",
+    "options": ["Sahara Desert", "Arabian Desert", "Gobi Desert", "Antarctic Desert"],
+    "correct_answer": 3,
+    "difficulty": "hard",
+    "category": "geography",
+    "explanation": "The Antarctic Desert is the largest desert at about 14 million square kilometers. The Sahara is the largest hot desert."
+  },
+  {
+    "question_text": "How many bones are in the adult human body?",
+    "options": ["186", "206", "226", "246"],
+    "correct_answer": 1,
+    "difficulty": "medium",
+    "category": "biology",
+    "explanation": "Adults have 206 bones. Babies are born with about 270 bones, but many fuse together as they grow."
+  }
+]

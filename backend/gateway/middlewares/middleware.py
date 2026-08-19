@@ -24,6 +24,7 @@ class FirebaseAuthMiddleware(BaseHTTPMiddleware):
             "/health",
             "/auth/verify",  # First login doesn't need auth
             "/auth/test",  # Test endpoint
+            "/game/health",
         ]
         
         if request.url.path in public_paths:
