@@ -27,6 +27,13 @@
 - [ ] **Traitor System:** Add random assignment of the "Saboteur" role per session.
 - [ ] **Economy System:** Write endpoints to update User coins upon winning/losing.
 
+### ⏳ Pending Tasks: Phase 3.5 (Redis & Optimization)
+- [ ] **Redis Setup:** Create `shared/redis.py` connection manager using `aioredis`.
+- [ ] **Game Session Cache:** Cache active sessions in Redis (key: `game_session:{id}`, TTL: 30 min).
+- [ ] **Rate Limiting:** Add rate limiting middleware in Gateway (100 req/min per Firebase UID).
+- [ ] **Leaderboard:** Implement Redis sorted set for top 100 players by score.
+- [ ] **Monitoring:** Add Redis health check endpoint (`/health/redis`).
+
 ### ⏳ Pending Tasks: Phase 4 (LLM Integration)
 - [ ] **LLM Logic:** Integrate LangChain/Groq for dynamic responses.
 - [ ] **Prompt Engineering:** Create specific personality prompts (Historian, Risky, Saboteur).

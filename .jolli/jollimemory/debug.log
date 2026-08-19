@@ -525,3 +525,60 @@
 [2026-08-19T06:42:15.749Z] INFO  [PushExecutor] [trace=ecdda6f0b39704d5fca8735d7bb28c90] processPushPending(activation): not signed in — keeping 4 entries for later
 [2026-08-19T06:42:15.750Z] INFO  [PrePushWorker] [trace=ecdda6f0b39704d5fca8735d7bb28c90] PrePushWorker(vscode-activation): drain done — attempted=0 pushed=0 failed=0 (not signed in)
 [2026-08-19T06:42:19.188Z] INFO  [Installer] Status: enabled=true, claude=true, git=true, geminiHook=true, worktreeHooks=true, sessions=8, summaries=4, codex=false/undefined, gemini=true/true, enabledWorktrees=1, opencode=false/undefined, cursor=true/true, copilot=false/true, copilotChat=true, cline=true/true
+[2026-08-19T06:58:00.839Z] INFO  [PrepareMsgHook] === Prepare-commit-msg hook started (source: message) ===
+[2026-08-19T06:58:00.856Z] INFO  [PrepareMsgHook] === Prepare-commit-msg hook finished ===
+[2026-08-19T06:58:00.970Z] INFO  [PostCommitHook] [trace=1e48ecc14eb9402c7749e7866a29764e] Detected operation: commit
+[2026-08-19T06:58:00.981Z] INFO  [PostCommitHook] [trace=1e48ecc14eb9402c7749e7866a29764e] Enqueued: type=commit hash=70aadb46
+[2026-08-19T06:58:00.981Z] INFO  [QueueWorker] [trace=1e48ecc14eb9402c7749e7866a29764e] Launching background worker
+[2026-08-19T06:58:00.982Z] INFO  [QueueWorker] [trace=1e48ecc14eb9402c7749e7866a29764e] Background worker spawned (PID: 13230)
+[2026-08-19T06:58:00.982Z] INFO  [EnsureGlobalDaemon] [trace=1e48ecc14eb9402c7749e7866a29764e] spawned global daemon ensure helper (pid 13231)
+[2026-08-19T06:58:01.200Z] INFO  [QueueWorker] [trace=1e48ecc14eb9402c7749e7866a29764e] === Queue worker started === node=24.13.0 kind=vscode-plugin source=vscode pkgVer=0.99.13 cliVer=0.99.13 dist=/Users/adarsh/.vscode/extensions/jolli.jollimemory-vscode-0.99.13/dist
+[2026-08-19T06:58:01.222Z] INFO  [StorageFactory] [trace=1e48ecc14eb9402c7749e7866a29764e] StorageFactory.create: route=cutover, projectPath=/Users/adarsh/KBC_AI_BE
+[2026-08-19T06:58:01.304Z] INFO  [QueueWorker] [trace=1e48ecc14eb9402c7749e7866a29764e] Processing queue entry: type=commit hash=70aadb46
+[2026-08-19T06:58:01.318Z] INFO  [GitOps] [trace=1e48ecc14eb9402c7749e7866a29764e] Commit 70aadb46: added procfile
+[2026-08-19T06:58:01.319Z] INFO  [QueueWorker] [trace=1e48ecc14eb9402c7749e7866a29764e] Commit: 70aadb46 - added procfile (12ms)
+[2026-08-19T06:58:01.382Z] INFO  [QueueWorker] [trace=1e48ecc14eb9402c7749e7866a29764e] Discovered 3 Copilot Chat session(s)
+[2026-08-19T06:58:01.386Z] INFO  [QueueWorker] [trace=1e48ecc14eb9402c7749e7866a29764e] Discovered 5 Cline (VS Code) session(s)
+[2026-08-19T06:58:01.495Z] INFO  [QueueWorker] [trace=1e48ecc14eb9402c7749e7866a29764e] Transcript source: session=1787082152686, lines=0→38, entries=16
+[2026-08-19T06:58:01.515Z] INFO  [QueueWorker] [trace=1e48ecc14eb9402c7749e7866a29764e] Git diff: 14 files changed, +190 -18 (19ms)
+[2026-08-19T06:58:01.556Z] INFO  [QueueWorker] [trace=1e48ecc14eb9402c7749e7866a29764e] Prompt blocks: plans=0 notes=0 references=0 (+0 track-only archived, not prompted) (AI soft-excluded 0)
+[2026-08-19T06:58:01.557Z] INFO  [Summarizer] [trace=1e48ecc14eb9402c7749e7866a29764e] Generating summary for commit 70aadb46
+[2026-08-19T06:58:01.557Z] INFO  [Summarizer] [trace=1e48ecc14eb9402c7749e7866a29764e] Context: transcript=16, files=14, lines=190+18
+[2026-08-19T06:58:01.557Z] WARN  [QueueWorker] [trace=1e48ecc14eb9402c7749e7866a29764e] First API attempt failed: No LLM provider available. Set an Anthropic API key (ANTHROPIC_API_KEY) or configure a Jolli Space API key (jolliApiKey).. Retrying in 2000ms...
+[2026-08-19T06:58:03.559Z] INFO  [Summarizer] [trace=1e48ecc14eb9402c7749e7866a29764e] Generating summary for commit 70aadb46
+[2026-08-19T06:58:03.559Z] INFO  [Summarizer] [trace=1e48ecc14eb9402c7749e7866a29764e] Context: transcript=16, files=14, lines=190+18
+[2026-08-19T06:58:03.559Z] ERROR [QueueWorker] [trace=1e48ecc14eb9402c7749e7866a29764e] API call failed after retry: No LLM provider available. Set an Anthropic API key (ANTHROPIC_API_KEY) or configure a Jolli Space API key (jolliApiKey).
+[2026-08-19T06:58:03.559Z] WARN  [QueueWorker] [trace=1e48ecc14eb9402c7749e7866a29764e] Saving summary with empty topics + llm-failed marker for commit 70aadb46
+[2026-08-19T06:58:03.559Z] INFO  [QueueWorker] [trace=1e48ecc14eb9402c7749e7866a29764e] API summary generated (2.0s)
+[2026-08-19T06:58:03.560Z] INFO  [QueueWorker] [trace=1e48ecc14eb9402c7749e7866a29764e] Plan registry scan: found 0 uncommitted slug(s) on main: []
+[2026-08-19T06:58:03.563Z] INFO  [QueueWorker] [trace=1e48ecc14eb9402c7749e7866a29764e] Plan association: detected 0 slug(s) from transcripts: []
+[2026-08-19T06:58:03.563Z] INFO  [QueueWorker] [trace=1e48ecc14eb9402c7749e7866a29764e] Note registry scan: found 0 uncommitted note(s) on main: []
+[2026-08-19T06:58:03.563Z] INFO  [QueueWorker] [trace=1e48ecc14eb9402c7749e7866a29764e] Note association: detected 0 note(s): []
+[2026-08-19T06:58:03.563Z] INFO  [QueueWorker] [trace=1e48ecc14eb9402c7749e7866a29764e] Reference association: detected 0 ref(s) for branch main
+[2026-08-19T06:58:03.566Z] INFO  [QueueWorker] [trace=1e48ecc14eb9402c7749e7866a29764e] Summary built for 70aadb46: recap=no, topics=0, plans=absent, notes=absent, references=absent
+[2026-08-19T06:58:03.633Z] INFO  [MetadataManager] [trace=1e48ecc14eb9402c7749e7866a29764e] Manifest updated: main/added-procfile-70aadb46.md (commit)
+[2026-08-19T06:58:03.633Z] INFO  [FolderStorage] [trace=1e48ecc14eb9402c7749e7866a29764e] Markdown generated: main/added-procfile-70aadb46.md
+[2026-08-19T06:58:03.634Z] INFO  [FolderStorage] [trace=1e48ecc14eb9402c7749e7866a29764e] Wrote 4 files, deleted 0 (Add summary for 70aadb46: added procfile)
+[2026-08-19T06:58:03.634Z] INFO  [SummaryStore] [trace=1e48ecc14eb9402c7749e7866a29764e] Summary stored successfully for commit 70aadb46
+[2026-08-19T06:58:03.654Z] INFO  [QueueWorker] [trace=1e48ecc14eb9402c7749e7866a29764e] Summary stored successfully for commit 70aadb46 (88ms, 0 plans, 0 notes, 0 references)
+[2026-08-19T06:58:03.655Z] INFO  [QueueWorker] [trace=1e48ecc14eb9402c7749e7866a29764e] === Pipeline completed in 2.3s ===
+[2026-08-19T06:58:03.655Z] INFO  [QueueWorker] [trace=1e48ecc14eb9402c7749e7866a29764e] === Summary content (0 topics) ===
+[2026-08-19T06:58:03.658Z] INFO  [QueueWorker] [trace=1e48ecc14eb9402c7749e7866a29764e] Processed 1 queue entries
+[2026-08-19T06:58:03.659Z] INFO  [PushExecutor] [trace=1e48ecc14eb9402c7749e7866a29764e] Post-queue push trigger: scheduling drain for 1 newly generated summar(ies)
+[2026-08-19T06:58:03.661Z] INFO  [PushExecutor] [trace=1e48ecc14eb9402c7749e7866a29764e] processPushPending(post-queue): 4 pending entr(ies) (filtered to 1 hash(es))
+[2026-08-19T06:58:03.669Z] INFO  [PushExecutor] [trace=1e48ecc14eb9402c7749e7866a29764e] processPushPending(post-queue): not signed in — keeping 4 entries for later
+[2026-08-19T06:58:03.706Z] INFO  [GitOps] [trace=1e48ecc14eb9402c7749e7866a29764e] Commit 70aadb46: added procfile
+[2026-08-19T06:58:03.735Z] INFO  [StorageFactory] [trace=1e48ecc14eb9402c7749e7866a29764e] StorageFactory.create: route=cutover, projectPath=/Users/adarsh/KBC_AI_BE
+[2026-08-19T06:58:03.782Z] INFO  [QueueWorker] [trace=1e48ecc14eb9402c7749e7866a29764e] === Queue worker finished ===
+[2026-08-19T06:58:03.783Z] INFO  [SessionStartHook] [trace=1e48ecc14eb9402c7749e7866a29764e] Briefing cache not warmed — nothing to brief on this branch
+[2026-08-19T06:58:03.934Z] INFO  [PlanService] detectPlans found 0 plans (0 in registry)
+[2026-08-19T06:58:03.934Z] INFO  [NoteService] detectNotes found 0 notes (0 in registry)
+[2026-08-19T06:58:03.935Z] INFO  [references] detectReferences(*) found 0 (0 in registry)
+[2026-08-19T06:58:03.935Z] INFO  [SkillProjection] projectActiveSkills: 0 active (0 in registry)
+[2026-08-19T06:58:09.656Z] INFO  [PrePushHook] [trace=ed05da302d56d97150b54035364d6fb1] pre-push hook: remote=origin budget=3000ms
+[2026-08-19T06:58:09.666Z] INFO  [PushPendingStore] [trace=ed05da302d56d97150b54035364d6fb1] Enqueued 1 new push-pending entries (branch=main)
+[2026-08-19T06:58:09.667Z] INFO  [PrePushHook] [trace=ed05da302d56d97150b54035364d6fb1] pre-push: recorded 1 commit(s) across 1 pushed ref(s)
+[2026-08-19T06:58:09.671Z] INFO  [PrePushHook] [trace=ed05da302d56d97150b54035364d6fb1] Recorded 1 commit(s) for later sync — not signed in to Jolli
+[2026-08-19T06:58:09.684Z] INFO  [StorageFactory] [trace=ed05da302d56d97150b54035364d6fb1] StorageFactory.create: route=cutover, projectPath=/Users/adarsh/KBC_AI_BE
+[2026-08-19T07:05:52.091Z] INFO  [NoteService] detectNotes found 0 notes (0 in registry)
+[2026-08-19T07:06:16.587Z] INFO  [NoteService] detectNotes found 0 notes (0 in registry)

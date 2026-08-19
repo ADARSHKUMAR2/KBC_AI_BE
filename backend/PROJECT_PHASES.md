@@ -36,6 +36,18 @@
   * Add visual cues (e.g., a suspenseful sound effect or UI animation) hinting that a Traitor is among the experts.
   * Create post-game summary screens revealing who the Traitor was, how many coins were won/lost, and updating the player's top bar with their new coin balance.
 
+### **Phase 3.5: Redis Integration & Optimization**
+*Goal: Add caching layer for performance and scalability.*
+* **Backend Tasks:**
+  * Set up Redis connection in `shared/redis.py` using `redis-py` or `aioredis`.
+  * **Game Session Cache:** Cache active `GameSession` objects in Redis with 30-minute TTL.
+  * **Rate Limiting:** Implement rate limiting middleware to prevent API abuse (e.g., 100 requests/minute per user).
+  * **Leaderboard Cache:** Store top players sorted by score using Redis sorted sets for instant retrieval.
+  * Add Redis health check endpoint to Gateway.
+* **Unity Integration:**
+  * No changes needed - caching is transparent to the frontend.
+  * Optionally add a "Leaderboard" UI panel that fetches top scores from the backend.
+
 ### **Phase 4: Dynamic LLM Integration (The Real AI)**
 *Goal: Replace the hardcoded expert advice with dynamic LLM-generated dialogue.*
 * **Backend Tasks:**
