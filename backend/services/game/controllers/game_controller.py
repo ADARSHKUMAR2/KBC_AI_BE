@@ -9,6 +9,13 @@ from backend.services.game.models.question import Question
 from backend.services.game.models.expert import Expert, ExpertAdvice
 from backend.services.game.models.game_session import GameSession, SessionStatus
 
+from backend.services.auth.models.user import User
+
+# ── COIN ECONOMY CONSTANTS ───────────────────────────────────────────
+COINS_PER_CORRECT_ANSWER  = 100   # earned for every correct answer
+COINS_PENALTY_TRUSTED_SABOTEUR = 200  # lost each time the Saboteur fooled you
+# ─────────────────────────────────────────────────────────────────────
+
 class GameController:
     """
     Core game logic controller for Phase 2.
@@ -27,6 +34,8 @@ class GameController:
         In Phase 4, this will include LLM client initialization.
         """
         # Define the 3 expert personalities (fixed for all games)
+        # During start_session one will secretly become a Saboteur in the DB.
+        
         self.expert_templates = [
             Expert(
                 name="Dr. History",
@@ -81,7 +90,8 @@ class GameController:
     def _generate_expert_advice(
         self, 
         expert: Expert, 
-        question: Question
+        question: Question,
+        saboteur_expert_name: Optional[str] = None
     ) -> ExpertAdvice:
         """
         Generate hardcoded advice based on expert personality.
@@ -98,6 +108,27 @@ class GameController:
         """
         correct_idx = question.correct_answer
         correct_option = question.options[correct_idx]
+
+        # ── SABOTEUR BRANCH ────────────────────────────────
+        # The saboteur_expert_name is known only server-side.
+        # We check here so Unity never sees the "Saboteur" label.
+        if saboteur_expert_name and expert.name == saboteur_expert_name:
+            wrong_options = [i for i in range(4) if i != correct_idx]
+            wrong_idx     = random.choice(wrong_options)
+            wrong_option  = question.options[wrong_idx]
+
+            saboteur_templates = [
+                f"I've studied this extensively — it's definitely option {wrong_idx + 1} ({wrong_option}).",
+                f"Trust me on this one. The answer is clearly option {wrong_idx + 1}.",
+                f"Based on my deep research, option {wrong_idx + 1} ({wrong_option}) is correct. No question.",
+            ]
+            return ExpertAdvice(
+                expert_name=expert.name,
+                advice_text=random.choice(saboteur_templates),
+                confidence_percentage=random.randint(88, 99),  # very high confidence = red flag!
+                recommended_option=wrong_idx
+            )
+        # ─────────────────────────────────────────────────────────────
         
         if expert.personality_type == "Historian":
             # Conservative, usually correct, moderate confidence
@@ -177,6 +208,10 @@ class GameController:
         2. Assign the 3 experts to this session
         3. Create and save GameSession document
         4. Return session_id and first question with expert advice
+
+        Saboteur: randomly choose one expert to secretly be
+        the Saboteur. Their name is stored in `saboteur_expert_name`
+        on the session document — never sent to Unity until game-end.
         
         Args:
             user_id: Firebase UID of the player
@@ -187,6 +222,12 @@ class GameController:
         # Step 1: Get random questions
         questions = await self._get_random_questions(count=10)
         question_ids = [str(q.id) for q in questions]
+
+        # ── Pick the Saboteur secretly ───────────────────────────────
+        saboteur = random.choice(self.expert_templates)
+        saboteur_expert_name = saboteur.name
+        print(f"🎭 Saboteur this session: {saboteur_expert_name}")
+        # ─────────────────────────────────────────────────────────────
         
         # Step 2: Create session with assigned experts
         session = GameSession(
@@ -196,7 +237,8 @@ class GameController:
             assigned_experts=self.expert_templates,  # All 3 experts
             score=0,
             total_questions=len(questions),
-            session_status=SessionStatus.ACTIVE
+            session_status=SessionStatus.ACTIVE,
+            saboteur_expert_name=saboteur_expert_name
         )
         
         # Step 3: Save to MongoDB
@@ -368,7 +410,11 @@ class GameController:
         - Final score
         - Questions answered
         - Accuracy percentage
-        - (Phase 3 will add: Traitor reveal, Coins won/lost)
+        1. Reveal which expert was the Saboteur.
+        2. Count how many times the player was fooled by the Saboteur.
+        3. Calculate net coins: +100 per correct answer, -200 per Saboteur trust.
+        4. Persist the coin change and updated stats to the User document.
+        
         
         Args:
             session_id: The GameSession MongoDB ID
@@ -386,37 +432,86 @@ class GameController:
         
         # Fetch all questions for detailed breakdown
         questions_data = []
+        times_trusted_saboteur  = 0
+        
         for i, question_id in enumerate(session.question_ids):
-            question = await Question.get(PydanticObjectId(question_id))
-            
+            question    = await Question.get(PydanticObjectId(question_id))
             user_answer = session.user_answers[i] if i < len(session.user_answers) else None
-            
+
             if question and user_answer is not None:
+                # Regenerate what the Saboteur recommended for this question
+                saboteur_expert = next(
+                    (e for e in session.assigned_experts if e.name == session.saboteur_expert_name),
+                    None
+                )
+                saboteur_rec = None
+                if saboteur_expert:
+                    # We can't regenerate the exact random advice, but we know the Saboteur
+                    # always picks a WRONG option, so any wrong answer the player chose that
+                    # matches a wrong option counts as "trusting the Saboteur".
+                    # For simplicity: if the player got it wrong, assume they may have trusted the Saboteur.
+                    if user_answer != question.correct_answer:
+                        times_trusted_saboteur += 1
+
                 questions_data.append({
                     "question_number": i + 1,
-                    "question_text": question.question_text,
-                    "user_answer": question.options[user_answer] if user_answer is not None else "No answer",
-                    "correct_answer": question.options[question.correct_answer],
-                    "was_correct": (user_answer == question.correct_answer),
-                    "category": question.category
+                    "question_text":   question.question_text,
+                    "user_answer":     question.options[user_answer],
+                    "correct_answer":  question.options[question.correct_answer],
+                    "was_correct":     (user_answer == question.correct_answer),
+                    "category":        question.category
                 })
-        
+
+        # ── Coin calculation ─────────────────────────────────────────
+        coins_earned = session.score * COINS_PER_CORRECT_ANSWER
+        coins_lost   = times_trusted_saboteur * COINS_PENALTY_TRUSTED_SABOTEUR
+        coins_delta  = coins_earned - coins_lost
+        # ─────────────────────────────────────────────────────────────
+
+        # ── Persist coins + stats to User document ───────────────────
+        user = await User.find_one(User.firebase_uid == session.user_id)
+        if user:
+            user.coins       = max(0, user.coins + coins_delta)  # floor at 0
+            user.games_played += 1
+            user.total_score  += session.score
+            if session.score == session.total_questions:          # perfect score = win
+                user.games_won += 1
+            await user.save()
+        # ─────────────────────────────────────────────────────────────
+
+        # Save coins_delta on the session for reference
+        session.coins_delta = coins_delta
+        await session.save()
+
         return {
-            "session_id": session_id,
-            "status": session.session_status,
-            "final_score": session.score,
-            "total_questions": session.total_questions,
-            "accuracy_percentage": round(accuracy, 2),
-            "questions_breakdown": questions_data,
-            "started_at": session.created_at.isoformat(),
-            "completed_at": session.completed_at.isoformat() if session.completed_at else None,
+            "session_id":           session_id,
+            "status":               session.session_status,
+            "final_score":          session.score,
+            "total_questions":      session.total_questions,
+            "accuracy_percentage":  round(accuracy, 2),
+            "questions_breakdown":  questions_data,
+            "started_at":           session.created_at.isoformat(),
+            "completed_at":         session.completed_at.isoformat() if session.completed_at else None,
+
+            # ── summary data ─────────────────────────────────
+            "traitor_reveal": {
+                "saboteur_name":         session.saboteur_expert_name,
+                "times_you_were_fooled": times_trusted_saboteur,
+            },
+            "economy": {
+                "coins_earned":  coins_earned,
+                "coins_lost":    coins_lost,
+                "net_coins":     coins_delta,
+                "new_balance":   user.coins if user else None,
+            },
+            # ─────────────────────────────────────────────────────────
+
             "experts_used": [
                 {
-                    "name": expert.name,
-                    "personality": expert.personality_type,
-                    # Phase 3 will add: "was_traitor": False
+                    "name":        e.name,
+                    "personality": e.personality_type,
+                    "was_traitor": (e.name == session.saboteur_expert_name),  # ← revealed here
                 }
-                for expert in session.assigned_experts
+                for e in session.assigned_experts
             ]
         }
-

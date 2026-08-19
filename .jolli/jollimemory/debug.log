@@ -639,3 +639,60 @@
 [2026-08-19T07:07:30.812Z] INFO  [PrePushHook] [trace=37c1ae5610b42af30518613e70856a36] Recorded 1 commit(s) for later sync — not signed in to Jolli
 [2026-08-19T07:07:30.827Z] INFO  [StorageFactory] [trace=37c1ae5610b42af30518613e70856a36] StorageFactory.create: route=cutover, projectPath=/Users/adarsh/KBC_AI_BE
 [2026-08-19T10:58:02.865Z] INFO  [bridge] Merged mode activated {"branch":"main","creationPoint":"ebbda067","author":"Adarsh"}
+[2026-08-19T11:00:12.791Z] INFO  [PrepareMsgHook] === Prepare-commit-msg hook started (source: message) ===
+[2026-08-19T11:00:12.840Z] INFO  [PrepareMsgHook] === Prepare-commit-msg hook finished ===
+[2026-08-19T11:00:13.167Z] INFO  [PostCommitHook] [trace=681d91787235ded7334d06bff474744d] Detected operation: commit
+[2026-08-19T11:00:13.198Z] INFO  [PostCommitHook] [trace=681d91787235ded7334d06bff474744d] Enqueued: type=commit hash=5d36d9ab
+[2026-08-19T11:00:13.198Z] INFO  [QueueWorker] [trace=681d91787235ded7334d06bff474744d] Launching background worker
+[2026-08-19T11:00:13.200Z] INFO  [QueueWorker] [trace=681d91787235ded7334d06bff474744d] Background worker spawned (PID: 94288)
+[2026-08-19T11:00:13.203Z] INFO  [EnsureGlobalDaemon] [trace=681d91787235ded7334d06bff474744d] spawned global daemon ensure helper (pid 94289)
+[2026-08-19T11:00:13.532Z] INFO  [QueueWorker] [trace=681d91787235ded7334d06bff474744d] === Queue worker started === node=24.13.0 kind=vscode-plugin source=vscode pkgVer=0.99.13 cliVer=0.99.13 dist=/Users/adarsh/.vscode/extensions/jolli.jollimemory-vscode-0.99.13/dist
+[2026-08-19T11:00:13.567Z] INFO  [StorageFactory] [trace=681d91787235ded7334d06bff474744d] StorageFactory.create: route=cutover, projectPath=/Users/adarsh/KBC_AI_BE
+[2026-08-19T11:00:13.705Z] INFO  [QueueWorker] [trace=681d91787235ded7334d06bff474744d] Processing queue entry: type=commit hash=5d36d9ab
+[2026-08-19T11:00:13.738Z] INFO  [GitOps] [trace=681d91787235ded7334d06bff474744d] Commit 5d36d9ab: game service added
+[2026-08-19T11:00:13.738Z] INFO  [QueueWorker] [trace=681d91787235ded7334d06bff474744d] Commit: 5d36d9ab - game service added (23ms)
+[2026-08-19T11:00:13.928Z] INFO  [QueueWorker] [trace=681d91787235ded7334d06bff474744d] Discovered 3 Copilot Chat session(s)
+[2026-08-19T11:00:13.934Z] INFO  [QueueWorker] [trace=681d91787235ded7334d06bff474744d] Discovered 6 Cline (VS Code) session(s)
+[2026-08-19T11:00:14.055Z] INFO  [QueueWorker] [trace=681d91787235ded7334d06bff474744d] Transcript source: session=1787082152686, lines=47→52, entries=5
+[2026-08-19T11:00:14.067Z] INFO  [QueueWorker] [trace=681d91787235ded7334d06bff474744d] Transcript source: session=1787122800468, lines=8→70, entries=37
+[2026-08-19T11:00:14.153Z] INFO  [QueueWorker] [trace=681d91787235ded7334d06bff474744d] Git diff: 27 files changed, +1406 -7 (85ms)
+[2026-08-19T11:00:14.278Z] WARN  [GitOps] [trace=681d91787235ded7334d06bff474744d] Diff exceeds 60000-char budget (67988 chars) — prepending --stat file list and truncating body
+[2026-08-19T11:00:14.286Z] INFO  [QueueWorker] [trace=681d91787235ded7334d06bff474744d] Prompt blocks: plans=0 notes=0 references=0 (+0 track-only archived, not prompted) (AI soft-excluded 0)
+[2026-08-19T11:00:14.287Z] INFO  [Summarizer] [trace=681d91787235ded7334d06bff474744d] Generating summary for commit 5d36d9ab
+[2026-08-19T11:00:14.287Z] INFO  [Summarizer] [trace=681d91787235ded7334d06bff474744d] Context: transcript=42, files=27, lines=1406+7
+[2026-08-19T11:00:14.287Z] WARN  [QueueWorker] [trace=681d91787235ded7334d06bff474744d] First API attempt failed: No LLM provider available. Set an Anthropic API key (ANTHROPIC_API_KEY) or configure a Jolli Space API key (jolliApiKey).. Retrying in 2000ms...
+[2026-08-19T11:00:16.291Z] INFO  [Summarizer] [trace=681d91787235ded7334d06bff474744d] Generating summary for commit 5d36d9ab
+[2026-08-19T11:00:16.291Z] INFO  [Summarizer] [trace=681d91787235ded7334d06bff474744d] Context: transcript=42, files=27, lines=1406+7
+[2026-08-19T11:00:16.292Z] ERROR [QueueWorker] [trace=681d91787235ded7334d06bff474744d] API call failed after retry: No LLM provider available. Set an Anthropic API key (ANTHROPIC_API_KEY) or configure a Jolli Space API key (jolliApiKey).
+[2026-08-19T11:00:16.293Z] WARN  [QueueWorker] [trace=681d91787235ded7334d06bff474744d] Saving summary with empty topics + llm-failed marker for commit 5d36d9ab
+[2026-08-19T11:00:16.294Z] INFO  [QueueWorker] [trace=681d91787235ded7334d06bff474744d] API summary generated (2.0s)
+[2026-08-19T11:00:16.295Z] INFO  [QueueWorker] [trace=681d91787235ded7334d06bff474744d] Plan registry scan: found 0 uncommitted slug(s) on main: []
+[2026-08-19T11:00:16.295Z] INFO  [QueueWorker] [trace=681d91787235ded7334d06bff474744d] Plan association: detected 0 slug(s) from transcripts: []
+[2026-08-19T11:00:16.296Z] INFO  [QueueWorker] [trace=681d91787235ded7334d06bff474744d] Note registry scan: found 0 uncommitted note(s) on main: []
+[2026-08-19T11:00:16.296Z] INFO  [QueueWorker] [trace=681d91787235ded7334d06bff474744d] Note association: detected 0 note(s): []
+[2026-08-19T11:00:16.297Z] INFO  [QueueWorker] [trace=681d91787235ded7334d06bff474744d] Reference association: detected 0 ref(s) for branch main
+[2026-08-19T11:00:16.303Z] INFO  [QueueWorker] [trace=681d91787235ded7334d06bff474744d] Summary built for 5d36d9ab: recap=no, topics=0, plans=absent, notes=absent, references=absent
+[2026-08-19T11:00:16.433Z] INFO  [MetadataManager] [trace=681d91787235ded7334d06bff474744d] Manifest updated: main/game-service-added-5d36d9ab.md (commit)
+[2026-08-19T11:00:16.433Z] INFO  [FolderStorage] [trace=681d91787235ded7334d06bff474744d] Markdown generated: main/game-service-added-5d36d9ab.md
+[2026-08-19T11:00:16.436Z] INFO  [FolderStorage] [trace=681d91787235ded7334d06bff474744d] Wrote 4 files, deleted 0 (Add summary for 5d36d9ab: game service added)
+[2026-08-19T11:00:16.437Z] INFO  [SummaryStore] [trace=681d91787235ded7334d06bff474744d] Summary stored successfully for commit 5d36d9ab
+[2026-08-19T11:00:16.454Z] INFO  [QueueWorker] [trace=681d91787235ded7334d06bff474744d] Summary stored successfully for commit 5d36d9ab (151ms, 0 plans, 0 notes, 0 references)
+[2026-08-19T11:00:16.455Z] INFO  [QueueWorker] [trace=681d91787235ded7334d06bff474744d] === Pipeline completed in 2.7s ===
+[2026-08-19T11:00:16.455Z] INFO  [QueueWorker] [trace=681d91787235ded7334d06bff474744d] === Summary content (0 topics) ===
+[2026-08-19T11:00:16.459Z] INFO  [QueueWorker] [trace=681d91787235ded7334d06bff474744d] Processed 1 queue entries
+[2026-08-19T11:00:16.460Z] INFO  [PushExecutor] [trace=681d91787235ded7334d06bff474744d] Post-queue push trigger: scheduling drain for 1 newly generated summar(ies)
+[2026-08-19T11:00:16.463Z] INFO  [PushExecutor] [trace=681d91787235ded7334d06bff474744d] processPushPending(post-queue): 6 pending entr(ies) (filtered to 1 hash(es))
+[2026-08-19T11:00:16.474Z] INFO  [PushExecutor] [trace=681d91787235ded7334d06bff474744d] processPushPending(post-queue): not signed in — keeping 6 entries for later
+[2026-08-19T11:00:16.573Z] INFO  [GitOps] [trace=681d91787235ded7334d06bff474744d] Commit 5d36d9ab: game service added
+[2026-08-19T11:00:16.698Z] INFO  [StorageFactory] [trace=681d91787235ded7334d06bff474744d] StorageFactory.create: route=cutover, projectPath=/Users/adarsh/KBC_AI_BE
+[2026-08-19T11:00:16.837Z] INFO  [QueueWorker] [trace=681d91787235ded7334d06bff474744d] === Queue worker finished ===
+[2026-08-19T11:00:16.840Z] INFO  [SessionStartHook] [trace=681d91787235ded7334d06bff474744d] Briefing cache not warmed — nothing to brief on this branch
+[2026-08-19T11:00:16.975Z] INFO  [PrePushHook] [trace=78002e262ac428f1dbaaf5ae1f2be58e] pre-push hook: remote=origin budget=3000ms
+[2026-08-19T11:00:17.023Z] INFO  [PushPendingStore] [trace=78002e262ac428f1dbaaf5ae1f2be58e] Enqueued 1 new push-pending entries (branch=main)
+[2026-08-19T11:00:17.025Z] INFO  [PrePushHook] [trace=78002e262ac428f1dbaaf5ae1f2be58e] pre-push: recorded 1 commit(s) across 1 pushed ref(s)
+[2026-08-19T11:00:17.042Z] INFO  [PrePushHook] [trace=78002e262ac428f1dbaaf5ae1f2be58e] Recorded 1 commit(s) for later sync — not signed in to Jolli
+[2026-08-19T11:00:17.108Z] INFO  [StorageFactory] [trace=78002e262ac428f1dbaaf5ae1f2be58e] StorageFactory.create: route=cutover, projectPath=/Users/adarsh/KBC_AI_BE
+[2026-08-19T11:00:17.088Z] INFO  [PlanService] detectPlans found 0 plans (0 in registry)
+[2026-08-19T11:00:17.089Z] INFO  [NoteService] detectNotes found 0 notes (0 in registry)
+[2026-08-19T11:00:17.089Z] INFO  [references] detectReferences(*) found 0 (0 in registry)
+[2026-08-19T11:00:17.089Z] INFO  [SkillProjection] projectActiveSkills: 0 active (0 in registry)

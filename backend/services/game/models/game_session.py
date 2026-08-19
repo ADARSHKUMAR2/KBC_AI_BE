@@ -64,6 +64,14 @@ class GameSession(Document):
     # Timestamps
     created_at: datetime = Field(default_factory=datetime.utcnow)
     completed_at: Optional[datetime] = None
+
+    # The name of the expert secretly acting as Saboteur.
+    # Hidden from Unity until the game ends (not sent in question responses).
+    saboteur_expert_name: Optional[str] = None
+
+    # Net coins earned this session (positive = earned, negative = lost).
+    # Calculated at game-end and written to the User document.
+    coins_delta: int = Field(default=0)
     
     class Settings:
         name = "game_sessions"  # MongoDB collection name

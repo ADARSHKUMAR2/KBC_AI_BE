@@ -10,6 +10,7 @@ from backend.shared.database import get_database
 # Import all models that need to be registered with Beanie
 from backend.services.game.models.question import Question
 from backend.services.game.models.game_session import GameSession
+from backend.services.auth.models.user import User
 
 # Import routes
 from backend.services.game.routes.game_routes import router as game_router
@@ -32,7 +33,7 @@ async def lifespan(app: FastAPI):
     
     # Initialize MongoDB with all game models
     try:
-        await get_database(document_models=[Question, GameSession])
+        await get_database(document_models=[Question, GameSession, User])
         print("✅ Game Service: Database initialized successfully")
     except Exception as e:
         print(f"❌ Game Service: Failed to initialize database: {e}")
