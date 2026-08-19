@@ -3,6 +3,7 @@ from typing import Optional
 from pydantic import BaseModel
 
 from backend.services.game.controllers.game_controller import GameController
+from backend.services.auth.models.user import User
 
 # Create router
 router = APIRouter(prefix="/game", tags=["Game"])
@@ -254,25 +255,19 @@ async def get_summary(session_id: str):
 @router.get("/leaderboard")
 async def get_leaderboard():
     """
-    Get top 10 players by total score.
-    Uses Redis sorted set for instant response.
+    Get top 10 players by total score across ALL games played.
+    Queries MongoDB directly to ensure permanent accuracy.
     """
-    from backend.shared.redis_client import get_redis
     
-    redis_client = await get_redis()
-    top_players = await redis_client.zrevrange("leaderboard:total_score", 0, 9, withscores=True)
+    top_users = await User.find().sort(-User.total_score).limit(10).to_list()
     
     leaderboard = []
-    for i, (user_id, score) in enumerate(top_players):
-        # Fetch user details from MongoDB (could also cache this)
-        from backend.services.auth.models.user import User
-        user = await User.find_one(User.firebase_uid == user_id)
-        
+    for i, user in enumerate(top_users):
         leaderboard.append({
             "rank": i + 1,
-            "user_id": user_id,
-            "display_name": user.display_name if user else "Unknown",
-            "total_score": int(score)
+            "user_id": user.firebase_uid,
+            "display_name": user.display_name or "Anonymous",
+            "total_score": user.total_score
         })
     
     return {
