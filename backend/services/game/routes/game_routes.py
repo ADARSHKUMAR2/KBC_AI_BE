@@ -251,6 +251,34 @@ async def get_summary(session_id: str):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to fetch summary: {str(e)}")
 
+@router.get("/leaderboard")
+async def get_leaderboard():
+    """
+    Get top 10 players by total score.
+    Uses Redis sorted set for instant response.
+    """
+    from backend.shared.redis_client import get_redis
+    
+    redis_client = await get_redis()
+    top_players = await redis_client.zrevrange("leaderboard:total_score", 0, 9, withscores=True)
+    
+    leaderboard = []
+    for i, (user_id, score) in enumerate(top_players):
+        # Fetch user details from MongoDB (could also cache this)
+        from backend.services.auth.models.user import User
+        user = await User.find_one(User.firebase_uid == user_id)
+        
+        leaderboard.append({
+            "rank": i + 1,
+            "user_id": user_id,
+            "display_name": user.display_name if user else "Unknown",
+            "total_score": int(score)
+        })
+    
+    return {
+        "leaderboard": leaderboard,
+        "total_entries": len(leaderboard)
+    }
 
 # ========== HEALTH CHECK ==========
 
@@ -267,3 +295,4 @@ async def health_check():
         "service": "game-service",
         "version": "1.0.0-phase2"
     }
+

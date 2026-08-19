@@ -19,6 +19,7 @@ dependencies = [
     "email-validator>=2.1.0",
     "rich>=15.0.0",
     "honcho>=2.0.0",
+    "redis>=5.0.0",
 ]
 
 [dependency-groups]

@@ -10,6 +10,7 @@ from backend.services.game.models.expert import Expert, ExpertAdvice
 from backend.services.game.models.game_session import GameSession, SessionStatus
 
 from backend.services.auth.models.user import User
+from backend.shared.redis_client import get_redis
 
 # ── COIN ECONOMY CONSTANTS ───────────────────────────────────────────
 COINS_PER_CORRECT_ANSWER  = 100   # earned for every correct answer
@@ -511,9 +512,18 @@ class GameController:
             await user.save()
         # ─────────────────────────────────────────────────────────────
 
+        # ── Update leaderboard ─────────────────────────
+        redis_client = await get_redis()
+        await redis_client.zadd(
+            "leaderboard:total_score",
+            {session.user_id: user.total_score}
+        )
+        # ──────────────────────────────────────────────────────────
+
         # Save coins_delta on the session for reference
         session.coins_delta = coins_delta
         await session.save()
+
 
         return {
             "session_id":           session_id,
