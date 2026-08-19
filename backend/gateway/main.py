@@ -7,6 +7,7 @@ from dotenv import load_dotenv, find_dotenv
 import os
 import sys
 import uvicorn
+from rich import print
 
 load_dotenv(find_dotenv())
 
