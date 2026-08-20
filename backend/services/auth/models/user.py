@@ -1,5 +1,5 @@
 from beanie import Document
-from pydantic import Field, EmailStr
+from pydantic import Field, EmailStr, BaseModel
 from typing import Optional
 from datetime import datetime
 
@@ -43,3 +43,8 @@ class User(Document):
                 "games_won": 3
             }
         }
+
+class TokenVerifyRequest(BaseModel):
+    firebase_token: str
+    email: Optional[str] = None
+    display_name: Optional[str] = None

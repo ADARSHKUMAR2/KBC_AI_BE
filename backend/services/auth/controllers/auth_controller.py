@@ -2,6 +2,7 @@ from fastapi import HTTPException, status
 from backend.services.auth.models.user import User
 from backend.services.auth.config.firebase import verify_firebase_token
 from datetime import datetime
+from backend.services.auth.models.user import TokenVerifyRequest
 
 class AuthController:
     """
@@ -9,7 +10,7 @@ class AuthController:
     """
     
     @staticmethod
-    async def verify_and_sync_user(firebase_token: str) -> User:
+    async def verify_and_sync_user(token_request: TokenVerifyRequest) -> User:
         """
         Main authentication flow:
         1. Verify Firebase token (is this user legit?)
@@ -26,12 +27,12 @@ class AuthController:
         """
         try:
             # Step 1: Verify token with Firebase
-            decoded_token = verify_firebase_token(firebase_token)
+            decoded_token = verify_firebase_token(token_request.firebase_token)
             
             # Extract user info from Firebase token
             firebase_uid = decoded_token['uid']
-            email = decoded_token.get('email')
-            display_name = decoded_token.get('name')
+            email = decoded_token.get('email') or token_request.email
+            display_name = decoded_token.get('name') or token_request.display_name
             photo_url = decoded_token.get('picture')
             
             # Step 2: Check if user exists in MongoDB
@@ -68,6 +69,7 @@ class AuthController:
             
         except Exception as e:
             # Token verification failed or database error
+            print(f"🔥 FIREBASE ADMIN REJECTED TOKEN: {str(e)}") 
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED,
                 detail=f"Authentication failed: {str(e)}"

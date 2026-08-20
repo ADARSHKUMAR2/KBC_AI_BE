@@ -1,13 +1,10 @@
 from fastapi import APIRouter, Header, HTTPException
 from pydantic import BaseModel
 from backend.services.auth.controllers.auth_controller import AuthController
+from typing import Optional
+from backend.services.auth.models.user import TokenVerifyRequest
 
 router = APIRouter(prefix="/auth", tags=["Authentication"])
-
-# Request/Response models
-class TokenVerifyRequest(BaseModel):
-    """Unity sends this"""
-    firebase_token: str
     
 class UserResponse(BaseModel):
     """Backend returns this"""
@@ -50,8 +47,8 @@ async def verify_token(request: TokenVerifyRequest):
     );
     ```
     """
-    user = await AuthController.verify_and_sync_user(request.firebase_token)
-    
+    user = await AuthController.verify_and_sync_user(request) 
+        
     return UserResponse(
         firebase_uid=user.firebase_uid,
         email=user.email,

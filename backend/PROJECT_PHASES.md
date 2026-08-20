@@ -73,3 +73,15 @@
 * **Unity Integration:**
   * Highlight "Daily News" category in the UI.
   * (Optional) Show "Generating Live Question..." loading state if generated on-demand.
+
+### **Phase 6: Real-Time Multiplayer**
+*Goal: Allow two players to compete against each other in real-time, synchronized via WebSockets, with the Saboteur adding psychological warfare.*
+* **Backend Tasks:**
+  * Add FastAPI WebSocket endpoints for persistent player connections.
+  * Implement Matchmaking using a Redis Queue.
+  * Create `MultiplayerGameSession` logic where the server drives the game clock and synchronizes the question/answers.
+  * Use Redis Pub/Sub to allow players on different server instances to play together.
+* **Unity Integration:**
+  * Implement a WebSocket client (`NativeWebSocket` or similar) to keep a persistent connection.
+  * Add a "Find Match" matchmaking UI with a waiting queue.
+  * Update the Game Scene to show Player 1 and Player 2 scores, and a synchronized countdown timer.
