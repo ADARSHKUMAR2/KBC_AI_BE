@@ -28,11 +28,13 @@ class StartSessionRequest(BaseModel):
     Unity will send this with the user's Firebase UID.
     """
     user_id: str
+    category: Optional[str] = None 
     
     class Config:
         json_schema_extra = {
             "example": {
-                "user_id": "firebase_uid_abc123"
+                "user_id": "firebase_uid_abc123",
+                "category": "current_events"
             }
         }
 
@@ -96,7 +98,10 @@ async def start_game_session(request: StartSessionRequest):
     ```
     """
     try:
-        result = await game_controller.start_session(user_id=request.user_id)
+        result = await game_controller.start_session(
+            user_id=request.user_id,
+            category=request.category
+            )
         return result
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to start session: {str(e)}")

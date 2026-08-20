@@ -61,7 +61,7 @@ class GameController:
     
     # ========== HELPER METHODS ==========
     
-    async def _get_random_questions(self, count: int = 10) -> List[Question]:
+    async def _get_random_questions(self, count: int = 10, category: Optional[str] = None) -> List[Question]:
         """
         Fetch random questions from the database.
         
@@ -74,17 +74,28 @@ class GameController:
         Raises:
             HTTPException if not enough questions in database
         """
+
+        # Filter by category if requested
+        if category:
+            query = Question.find(Question.category == category)
+        else:
+            query = Question.find_all()
+
         # Get total count of questions in DB
-        total_questions = await Question.count()
+        total_questions = await query.count()
         
-        if total_questions < count:
+        if total_questions == 0:
             raise HTTPException(
-                status_code=500,
-                detail=f"Not enough questions in database. Need {count}, found {total_questions}. Run seed script first!"
+                status_code=400,
+                detail=f"No questions found for category '{category or 'any'}'."
             )
         
-        # Fetch all questions and randomly sample
-        all_questions = await Question.find_all().to_list()
+        # If we have fewer questions than requested (e.g. only 3 news questions), 
+        # adapt and return however many we have.
+        if total_questions < count:
+            count = total_questions
+        
+        all_questions = await query.to_list()
         selected = random.sample(all_questions, count)
         
         return selected
@@ -199,7 +210,7 @@ class GameController:
 
         # ========== ENDPOINT METHODS ==========
     
-    async def start_session(self, user_id: str) -> dict:
+    async def start_session(self, user_id: str, category: Optional[str] = None) -> dict:
         """
         Start a new game session for a user OR resume an existing active one.
         
@@ -222,39 +233,65 @@ class GameController:
             Dict containing session_id, first question, and expert advice
         """
         # ── RESUME LOGIC ───────────────────────────────────────
+        # Find any active session for this user
         existing_session = await GameSession.find_one(
             GameSession.user_id == user_id,
             GameSession.session_status == SessionStatus.ACTIVE
         )
         
+        # If an active session exists, we must decide whether to resume it or abandon it.
+        # If they requested a specific category (Daily News), but the active session 
+        # is a standard game (or vice versa), we ABANDON the old session.
         if existing_session:
-            print(f"🔄 Resuming active session for user {user_id}")
-            current_question_id = existing_session.get_current_question_id()
-            question = await Question.get(PydanticObjectId(current_question_id))
+            # Let's peek at the first question in the active session to see its category
+            first_q_id = existing_session.question_ids[0] if existing_session.question_ids else None
+            should_resume = False
             
-            expert_advice_list = [
-                self._generate_expert_advice(e, question, existing_session.saboteur_expert_name)
-                for e in existing_session.assigned_experts
-            ]
-            
-            return {
-                "session_id": str(existing_session.id),
-                "status": "resumed",
-                "total_questions": existing_session.total_questions,
-                "question": {
-                    "question_text": question.question_text,
-                    "options":       question.options,
-                    "difficulty":    question.difficulty,
-                    "category":      question.category
-                },
-                "expert_advice":           [a.dict() for a in expert_advice_list],
-                "current_question_number": existing_session.current_question_index + 1
-            }
+            if first_q_id:
+                first_q = await Question.get(PydanticObjectId(first_q_id))
+                
+                if category == "current_events":
+                    # They want Daily News. Resume ONLY if the active session is Daily News.
+                    if first_q and first_q.category == "current_events":
+                        should_resume = True
+                else:
+                    # They want a Standard Game. Resume ONLY if the active session is NOT Daily News.
+                    if first_q and first_q.category != "current_events":
+                        should_resume = True
+                        
+            if should_resume:
+                print(f"🔄 Resuming active session for user {user_id}")
+                current_question_id = existing_session.get_current_question_id()
+                question = await Question.get(PydanticObjectId(current_question_id))
+                
+                expert_advice_list = [
+                    self._generate_expert_advice(e, question, existing_session.saboteur_expert_name)
+                    for e in existing_session.assigned_experts
+                ]
+                
+                return {
+                    "session_id": str(existing_session.id),
+                    "status": "resumed",
+                    "total_questions": existing_session.total_questions,
+                    "question": {
+                        "question_text": question.question_text,
+                        "options":       question.options,
+                        "difficulty":    question.difficulty,
+                        "category":      question.category
+                    },
+                    "expert_advice":           [a.dict() for a in expert_advice_list],
+                    "current_question_number": existing_session.current_question_index + 1
+                }
+            else:
+                # Abandon the mismatched session
+                print(f"🗑️ Abandoning mismatched active session for user {user_id}")
+                existing_session.session_status = SessionStatus.ABANDONED
+                await existing_session.save()
         # ─────────────────────────────────────────────────────────────
 
         # If no active session exists, create a new one
-        # Step 1: Get random questions
-        questions = await self._get_random_questions(count=10)
+        # Step 1: Get random questions (pass the category here!)
+        questions = await self._get_random_questions(count=10, category=category)
         question_ids = [str(q.id) for q in questions]
 
         # ── Pick the Saboteur secretly ───────────────────────────────
