@@ -281,7 +281,7 @@ class GameController:
         # Step 4: Get first question and generate expert advice
         first_question = questions[0]
         expert_advice_list = [
-            self._generate_expert_advice(expert, first_question)
+            self._generate_expert_advice(expert, first_question, saboteur_expert_name)
             for expert in self.expert_templates
         ]
         

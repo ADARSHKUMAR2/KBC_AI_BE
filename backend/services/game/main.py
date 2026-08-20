@@ -14,6 +14,8 @@ from backend.services.auth.models.user import User
 
 # Import routes
 from backend.services.game.routes.game_routes import router as game_router
+from apscheduler.schedulers.asyncio import AsyncIOScheduler
+from backend.services.game.data.graph import run_question_generation
 from rich import print
 
 @asynccontextmanager
@@ -35,11 +37,26 @@ async def lifespan(app: FastAPI):
     try:
         await get_database(document_models=[Question, GameSession, User])
         print("✅ Game Service: Database initialized successfully")
+
+        # ──  Schedule daily question generation ──────────────────────
+        scheduler = AsyncIOScheduler(timezone="Asia/Kolkata")
+        scheduler.add_job(
+            run_question_generation,
+            trigger="cron",
+            hour=0,         # midnight IST
+            minute=5,       # 5 minutes past midnight (avoids exact-midnight load)
+            id="daily_question_gen",
+            replace_existing=True
+        )
+        scheduler.start()
+        print("⏰ Daily question generation scheduler started (runs at 00:05 IST)")
+        
     except Exception as e:
         print(f"❌ Game Service: Failed to initialize database: {e}")
         raise
     
     yield  # Application runs here
+    scheduler.shutdown(wait=False)
     
     # ========== SHUTDOWN ==========
     print("🎮 Game Service: Shutting down...")

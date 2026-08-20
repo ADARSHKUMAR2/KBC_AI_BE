@@ -9,6 +9,8 @@ from backend.shared.llm_client import generate_expert_advice_streaming
 
 from backend.services.game.models.game_session import GameSession  
 from backend.services.game.models.question import Question  
+from backend.services.game.data.graph import run_question_generation
+
 from beanie import PydanticObjectId
 
 # Create router
@@ -329,6 +331,87 @@ async def stream_expert_advice(
         event_generator(),
         media_type="text/event-stream"
     )
+
+@router.post("/generate-question", status_code=202)
+async def generate_news_question():
+    """
+    [Phase 5] Trigger the LangGraph pipeline to generate a new
+    real-time news trivia question immediately.
+
+    Unity Flow:
+    1. Player taps "Daily News" category
+    2. If no current_events questions exist today, Unity calls this
+    3. Backend runs the Research → Writer → Validator → Saver pipeline
+    4. Returns the newly generated question
+
+    Status 202 = "Accepted" (pipeline runs async, may take 5-15 seconds)
+    """
+    try:
+        result = await run_question_generation()
+
+        if result["success"]:
+            return {
+                "status":        "generated",
+                "question_id":   result["question_id"],
+                "question_text": result["question_text"],
+                "message":       "New current events question generated and saved successfully!"
+            }
+        else:
+            raise HTTPException(
+                status_code=500,
+                detail=f"Pipeline failed: {result['error']}"
+            )
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(
+            status_code=500,
+            detail=f"Question generation failed: {str(e)}"
+        )
+
+
+@router.get("/questions/current-events")
+async def get_current_events_questions(limit: int = 20):
+    """
+    [Phase 5] Get all 'current_events' category questions from MongoDB.
+
+    Unity Flow:
+    1. Player opens the Daily News category panel
+    2. Unity calls this endpoint to get available questions
+    3. Display them with a 🔴 LIVE badge
+
+    Args:
+        limit: Max number of questions to return (default 20, max 50)
+
+    Returns:
+        List of questions with their metadata (no correct_answer exposed!)
+    """
+    limit = min(limit, 50)  # Safety cap
+
+    questions = await Question.find(
+        Question.category == "current_events"
+    ).sort(-Question.created_at).limit(limit).to_list()
+
+    question_list = []
+    for q in questions:
+        question_list.append({
+            "question_id":   str(q.id),
+            "question_text": q.question_text,
+            "options":       q.options,
+            "difficulty":    q.difficulty,
+            "category":      q.category,
+            "created_at":    q.created_at.isoformat(),
+            # NOTE: correct_answer is NOT included here for security
+            # Unity gets it only after submitting through the game session
+        })
+
+    return {
+        "questions":    question_list,
+        "total":        len(question_list),
+        "category":     "current_events",
+        "last_updated": question_list[0]["created_at"] if question_list else None
+    }
 
 # ========== HEALTH CHECK ==========
 
