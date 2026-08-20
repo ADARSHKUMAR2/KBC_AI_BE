@@ -11,6 +11,13 @@ from backend.services.game.models.game_session import GameSession
 from backend.services.game.models.question import Question  
 from backend.services.game.data.graph import run_question_generation
 
+from fastapi import WebSocket, WebSocketDisconnect
+from backend.services.game.controllers.matchmaking import matchmaking_queue
+from backend.services.game.controllers.websocket_manager import connection_manager
+from backend.services.game.models.multiplayer_session import MultiplayerGameSession, PlayerState, MultiplayerStatus
+import asyncio
+
+
 from beanie import PydanticObjectId
 
 # Create router
@@ -418,6 +425,219 @@ async def get_current_events_questions(limit: int = 20):
         "last_updated": question_list[0]["created_at"] if question_list else None
     }
 
+
+    # ========== MULTIPLAYER WEBSOCKET ENDPOINTS ==========
+
+@router.websocket("/multiplayer/ws/{player_id}")
+async def multiplayer_websocket(websocket: WebSocket, player_id: str):
+    """
+    WebSocket endpoint for real-time multiplayer.
+    
+    Unity Flow:
+    1. User clicks "Find Match"
+    2. Unity opens WebSocket connection to this endpoint
+    3. Server adds player to matchmaking queue
+    4. When matched, server sends "match_found" event
+    5. Game proceeds with real-time synchronization
+    
+    Message Types (Server → Client):
+    - `waiting_for_opponent`: In matchmaking queue
+    - `match_found`: Opponent found, game starting
+    - `question_start`: New question loaded
+    - `opponent_answered`: Other player submitted answer
+    - `question_end`: Both answered or timeout, show results
+    - `game_over`: All questions complete, show winner
+    
+    Message Types (Client → Server):
+    - `find_match`: Join matchmaking queue
+    - `submit_answer`: Submit answer for current question
+    - `cancel_matchmaking`: Leave queue
+    """
+    
+    await connection_manager.connect(player_id, websocket)
+    session_id = None
+    
+    try:
+        while True:
+            # Receive message from Unity
+            data = await websocket.receive_json()
+            action = data.get("action")
+            
+            # ── MATCHMAKING ──────────────────────────────────────
+            if action == "find_match":
+                socket_id = data.get("socket_id", player_id)
+                session_id = await matchmaking_queue.join_queue(player_id, socket_id)
+                
+                if session_id:
+                    # Match found immediately!
+                    session = await MultiplayerGameSession.get(session_id)
+                    connection_manager.register_session(
+                        session_id,
+                        session.player1_id,
+                        session.player2_id
+                    )
+                    
+                    # Get first question
+                    first_q_id = session.question_ids[0]
+                    question = await Question.get(PydanticObjectId(first_q_id))
+                    
+                    await connection_manager.broadcast_to_session(session_id, {
+                        "type": "match_found",
+                        "session_id": session_id,
+                        "opponent_id": session.player2_id if player_id == session.player1_id else session.player1_id,
+                        "question": {
+                            "question_text": question.question_text,
+                            "options": question.options,
+                            "difficulty": question.difficulty,
+                            "category": question.category
+                        },
+                        "time_limit": session.time_per_question,
+                        "current_question": 1,
+                        "total_questions": session.total_questions
+                    })
+                else:
+                    # Still waiting
+                    await websocket.send_json({
+                        "type": "waiting_for_opponent",
+                        "message": "Searching for opponent..."
+                    })
+            
+            # ── SUBMIT ANSWER ────────────────────────────────────
+            elif action == "submit_answer":
+                session_id = data.get("session_id")
+                selected_option = data.get("selected_option")
+                
+                session = await MultiplayerGameSession.get(PydanticObjectId(session_id))
+                if not session:
+                    await websocket.send_json({"type": "error", "message": "Session not found"})
+                    continue
+
+                # Determine which player this is
+                is_player1 = (player_id == session.player1_id)
+                
+                # Record answer
+                if is_player1:
+                    session.player1_answers.append(selected_option)
+                    session.player1_status = PlayerState.ANSWERED
+                else:
+                    session.player2_answers.append(selected_option)
+                    session.player2_status = PlayerState.ANSWERED
+                
+                await session.save()
+                
+                # Notify opponent
+                opponent_id = session.player2_id if is_player1 else session.player1_id
+                await connection_manager.send_to_player(opponent_id, {
+                    "type": "opponent_answered",
+                    "message": "Opponent has answered!"
+                })
+                
+                # Check if both answered
+                if session.both_players_answered():
+                    # Calculate results
+                    current_q_id = session.question_ids[session.current_question_index]
+                    question = await Question.get(PydanticObjectId(current_q_id))
+                    
+                    p1_answer = session.player1_answers[-1]
+                    p2_answer = session.player2_answers[-1]
+                    
+                    p1_correct = (p1_answer == question.correct_answer)
+                    p2_correct = (p2_answer == question.correct_answer)
+                    
+                    if p1_correct:
+                        session.player1_score += 1
+                    if p2_correct:
+                        session.player2_score += 1
+                    
+                    # Advance to next question
+                    session.advance_question()
+                    await session.save()
+                    
+                    # Send results to both players
+                    await connection_manager.send_personalized(
+                        session_id,
+                        player1_message={
+                            "type": "question_end",
+                            "your_answer_correct": p1_correct,
+                            "opponent_answer_correct": p2_correct,
+                            "correct_answer": question.correct_answer,
+                            "explanation": question.explanation,
+                            "your_score": session.player1_score,
+                            "opponent_score": session.player2_score
+                        },
+                        player2_message={
+                            "type": "question_end",
+                            "your_answer_correct": p2_correct,
+                            "opponent_answer_correct": p1_correct,
+                            "correct_answer": question.correct_answer,
+                            "explanation": question.explanation,
+                            "your_score": session.player2_score,
+                            "opponent_score": session.player1_score
+                        }
+                    )
+                    
+                    # Wait 3 seconds, then send next question or game over
+                    await asyncio.sleep(3)
+                    
+                    if session.is_complete():
+                        # Game over!
+                        winner = session.get_winner()
+                        
+                        await connection_manager.send_personalized(
+                            session_id,
+                            player1_message={
+                                "type": "game_over",
+                                "result": "win" if winner == "player1" else ("tie" if winner == "tie" else "loss"),
+                                "final_score": session.player1_score,
+                                "opponent_score": session.player2_score,
+                                "saboteur_reveal": session.saboteur_expert_name
+                            },
+                            player2_message={
+                                "type": "game_over",
+                                "result": "win" if winner == "player2" else ("tie" if winner == "tie" else "loss"),
+                                "final_score": session.player2_score,
+                                "opponent_score": session.player1_score,
+                                "saboteur_reveal": session.saboteur_expert_name
+                            }
+                        )
+                    else:
+                        # Next question
+                        next_q_id = session.question_ids[session.current_question_index]
+                        next_question = await Question.get(PydanticObjectId(next_q_id))
+                        
+                        await connection_manager.broadcast_to_session(session_id, {
+                            "type": "question_start",
+                            "question": {
+                                "question_text": next_question.question_text,
+                                "options": next_question.options,
+                                "difficulty": next_question.difficulty,
+                                "category": next_question.category
+                            },
+                            "current_question": session.current_question_index + 1,
+                            "time_limit": session.time_per_question
+                        })
+            
+            # ── CANCEL MATCHMAKING ───────────────────────────────
+            elif action == "cancel_matchmaking":
+                await matchmaking_queue.leave_queue(player_id)
+                await websocket.send_json({
+                    "type": "matchmaking_cancelled",
+                    "message": "Removed from queue"
+                })
+    
+    except WebSocketDisconnect:
+        connection_manager.disconnect(player_id)
+        
+        # Handle mid-game disconnect
+        if session_id:
+            session = await MultiplayerGameSession.get(PydanticObjectId(session_id))
+            if session and session.session_status == MultiplayerStatus.IN_PROGRESS:
+                # Notify opponent
+                opponent_id = session.player2_id if player_id == session.player1_id else session.player1_id
+                await connection_manager.send_to_player(opponent_id, {
+                    "type": "opponent_disconnected",
+                    "message": "Opponent left the game. You win by default!"
+                })
 # ========== HEALTH CHECK ==========
 
 @router.get("/health")

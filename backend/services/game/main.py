@@ -16,6 +16,7 @@ from backend.services.auth.models.user import User
 from backend.services.game.routes.game_routes import router as game_router
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from backend.services.game.data.graph import run_question_generation
+from backend.services.game.models.multiplayer_session import MultiplayerGameSession 
 from rich import print
 
 @asynccontextmanager
@@ -35,7 +36,7 @@ async def lifespan(app: FastAPI):
     
     # Initialize MongoDB with all game models
     try:
-        await get_database(document_models=[Question, GameSession, User])
+        await get_database(document_models=[Question, GameSession, User, MultiplayerGameSession])
         print("✅ Game Service: Database initialized successfully")
 
         # ──  Schedule daily question generation ──────────────────────

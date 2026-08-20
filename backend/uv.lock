@@ -70,6 +70,7 @@ dependencies = [
     { name = "redis" },
     { name = "rich" },
     { name = "uvicorn" },
+    { name = "websockets" },
 ]
 
 [package.dev-dependencies]
@@ -100,6 +101,7 @@ requires-dist = [
     { name = "redis", specifier = ">=5.0.0" },
     { name = "rich", specifier = ">=15.0.0" },
     { name = "uvicorn", specifier = ">=0.29.0" },
+    { name = "websockets", specifier = ">=12.0" },
 ]
 
 [package.metadata.requires-dev]
